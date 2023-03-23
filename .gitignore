@@ -1,0 +1,28 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+target/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Runtime state
+*.db
+*.db-shm
+*.db-wal
+*.log
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Built binaries
+*.exe
