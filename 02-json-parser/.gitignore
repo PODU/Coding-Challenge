@@ -1,0 +1,10 @@
+# Compiled binaries
+/jsonparser
+/jsonparser.exe
+
+# Go fuzz crash/corpus artifacts checked in only when they are regressions
+# (kept), otherwise local corpus lives in the build cache.
+
+# Test/coverage output
+*.out
+*.test
