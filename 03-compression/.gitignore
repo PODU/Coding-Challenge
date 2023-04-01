@@ -1,0 +1,12 @@
+# Built binaries
+/huff
+/huff.exe
+/cmd/huff/huff
+/cmd/huff/huff.exe
+
+# Large canonical corpus is fetched, not committed
+/testdata/les_miserables.txt
+
+# Scratch / generated artifacts
+*.huff
+*.out
