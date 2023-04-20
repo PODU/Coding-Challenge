@@ -1,0 +1,24 @@
+# Sample load balancer configuration.
+# Flags override any value set here (see README). Start with:
+#   lb -config ./lb.yaml
+
+listen: ":8080"                 # address:port the LB listens on
+
+backends:
+  - http://localhost:8081
+  - http://localhost:8082
+  - http://localhost:8083
+
+health:
+  path: "/health"               # path appended to each backend for probes
+  interval: "10s"               # Go duration string between probe rounds
+  timeout: "2s"                 # per-probe timeout
+
+strategy: "round_robin"         # round_robin (v1)
+
+log_level: "info"               # debug|info|warn|error
+
+proxy:
+  dial_timeout: "5s"
+  response_header_timeout: "30s"
+  shutdown_timeout: "15s"       # graceful drain budget on SIGINT/SIGTERM
