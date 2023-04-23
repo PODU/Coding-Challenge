@@ -1,0 +1,30 @@
+[package]
+name = "ccsort"
+version = "0.1.0"
+edition = "2021"
+description = "A production-grade clone of the Unix `sort` utility (Coding Challenge #6)."
+license = "MIT"
+authors = ["ccsort contributors"]
+readme = "README.md"
+repository = "https://example.invalid/ccsort"
+categories = ["command-line-utilities", "algorithms"]
+keywords = ["sort", "cli", "radix", "external-sort", "algorithms"]
+
+# Intentionally dependency-free: the whole tool is built on the Rust standard
+# library so that `cargo build` works fully offline with no network access.
+# Argument parsing, hashing (for -R), and the k-way merge heap are all hand
+# rolled. See README.md ("Design notes") for the rationale.
+[dependencies]
+
+[lib]
+name = "ccsort"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ccsort"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
