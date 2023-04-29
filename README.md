@@ -11,3 +11,4 @@ Each folder is a self-contained project with its own README.
 | 4 | [04-cut](04-cut/) | Go | Cuts fields, bytes or characters out of each line of input. |
 | 5 | [05-load-balancer](05-load-balancer/) | Go | HTTP load balancer with round-robin scheduling and health checks. |
 | 6 | [06-sort](06-sort/) | Rust | sort clone with several algorithms, unique/random modes and external merge sort. |
+| 7 | [07-calculator](07-calculator/) | Python | Expression calculator using the shunting-yard algorithm. |
