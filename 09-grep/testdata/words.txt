@@ -1,0 +1,6 @@
+cat
+category
+the cat sat
+concatenate
+a cat.
+scatter

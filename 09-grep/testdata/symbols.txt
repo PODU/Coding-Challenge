@@ -1,0 +1,6 @@
+alpha
+beta2
+gamma
+delta9
+12345
+omega
