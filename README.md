@@ -14,3 +14,4 @@ Each folder is a self-contained project with its own README.
 | 7 | [07-calculator](07-calculator/) | Python | Expression calculator using the shunting-yard algorithm. |
 | 8 | [08-redis-server](08-redis-server/) | Go | Redis-compatible server speaking RESP, with expiry and persistence. |
 | 9 | [09-grep](09-grep/) | Go | Searches files for regex matches, with recursion, inversion and case options. |
+| 10 | [10-uniq](10-uniq/) | Go | Filters or counts adjacent duplicate lines. |
