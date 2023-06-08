@@ -16,3 +16,4 @@ Each folder is a self-contained project with its own README.
 | 9 | [09-grep](09-grep/) | Go | Searches files for regex matches, with recursion, inversion and case options. |
 | 10 | [10-uniq](10-uniq/) | Go | Filters or counts adjacent duplicate lines. |
 | 11 | [11-web-server](11-web-server/) | Go | Concurrent HTTP server that serves static files. |
+| 12 | [12-url-shortener](12-url-shortener/) | Go | Web service that turns long URLs into short codes and redirects them. |
