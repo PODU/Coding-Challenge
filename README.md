@@ -17,3 +17,4 @@ Each folder is a self-contained project with its own README.
 | 10 | [10-uniq](10-uniq/) | Go | Filters or counts adjacent duplicate lines. |
 | 11 | [11-web-server](11-web-server/) | Go | Concurrent HTTP server that serves static files. |
 | 12 | [12-url-shortener](12-url-shortener/) | Go | Web service that turns long URLs into short codes and redirects them. |
+| 13 | [13-diff-tool](13-diff-tool/) | Go | Line-by-line file diff built on the longest common subsequence. |
