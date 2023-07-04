@@ -20,3 +20,4 @@ Each folder is a self-contained project with its own README.
 | 13 | [13-diff-tool](13-diff-tool/) | Go | Line-by-line file diff built on the longest common subsequence. |
 | 14 | [14-build-your-own-shell](14-build-your-own-shell/) | Go | Interactive shell with built-ins, pipes and command history. |
 | 15 | [15-build-your-own-cat](15-build-your-own-cat/) | Go | Concatenates files to stdout, with line numbering options. |
+| 16 | [16-irc-client](16-irc-client/) | Go | Terminal IRC client that joins channels and chats. |
