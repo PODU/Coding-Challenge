@@ -22,3 +22,4 @@ Each folder is a self-contained project with its own README.
 | 15 | [15-build-your-own-cat](15-build-your-own-cat/) | Go | Concatenates files to stdout, with line numbering options. |
 | 16 | [16-irc-client](16-irc-client/) | Go | Terminal IRC client that joins channels and chats. |
 | 17 | [17-memcached-server](17-memcached-server/) | Go | Memcached-compatible server supporting the text protocol. |
+| 18 | [18-spotify-client](18-spotify-client/) | Python | Command-line Spotify client for searching and controlling playback. |

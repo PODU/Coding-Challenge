@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spotify-client"
+version = "0.1.0"
+description = "A command-line Spotify client using OAuth 2.0 Authorization Code with PKCE."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #18" }]
+keywords = ["spotify", "cli", "oauth", "pkce", "music"]
+dependencies = [
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dotenv = ["python-dotenv>=1.0"]
+rich = ["rich>=13.0"]
+test = [
+    "pytest>=7.4",
+    "responses>=0.24",
+    "pytest-cov>=4.1",
+]
+
+[project.scripts]
+spotify = "spotify_client.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["spotify_client"]
