@@ -1,0 +1,32 @@
+{
+  "name": "disdaccbot",
+  "version": "1.0.0",
+  "description": "Discord bot for John Crickett's Coding Challenge #19 - greeting, quotes, and a self-growing coding-challenge catalog.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "register": "ts-node src/register-slash.ts",
+    "register:built": "node dist/register-slash.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}

@@ -1,0 +1,22 @@
+[Unit]
+Description=disdaccbot - Coding Challenge #19 Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=disdaccbot
+WorkingDirectory=/opt/disdaccbot
+ExecStart=/usr/bin/node dist/index.js
+# Holds DISCORD_TOKEN (and any other overrides). chmod 600, owned by the bot user.
+EnvironmentFile=/etc/disdaccbot.env
+Restart=always
+RestartSec=5
+# Persist the catalog across restarts/deploys.
+StateDirectory=disdaccbot
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=disdaccbot
+
+[Install]
+WantedBy=multi-user.target

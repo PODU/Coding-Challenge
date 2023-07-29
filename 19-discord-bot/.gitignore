@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.log
+
+# Secrets
+.env
+
+# Runtime catalog (seeded from seed/challenges.seed.json on first run)
+data/*.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+coverage/
