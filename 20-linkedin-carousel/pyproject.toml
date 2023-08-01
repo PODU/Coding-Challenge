@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "linkedin-carousel"
+version = "1.0.0"
+description = "Turn Markdown/text into a multi-slide square PDF carousel for LinkedIn."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #20" }]
+keywords = ["linkedin", "carousel", "pdf", "markdown", "reportlab", "pillow"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "reportlab>=4.0",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0", "pypdf>=3.0"]
+
+[project.scripts]
+carousel = "carousel.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -24,3 +24,4 @@ Each folder is a self-contained project with its own README.
 | 17 | [17-memcached-server](17-memcached-server/) | Go | Memcached-compatible server supporting the text protocol. |
 | 18 | [18-spotify-client](18-spotify-client/) | Python | Command-line Spotify client for searching and controlling playback. |
 | 19 | [19-discord-bot](19-discord-bot/) | TypeScript | Discord bot with quotes, challenge lookups and slash commands. |
+| 20 | [20-linkedin-carousel](20-linkedin-carousel/) | Python | Turns a Markdown post into a LinkedIn carousel PDF. |

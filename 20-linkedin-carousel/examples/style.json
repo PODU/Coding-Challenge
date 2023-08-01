@@ -1,0 +1,13 @@
+{
+  "style": {
+    "background": "#0A1F44",
+    "foreground": "#FFFFFF",
+    "font": "Helvetica",
+    "font_size": 56,
+    "size": 1080
+  },
+  "profile": {
+    "name": "Jane Dev",
+    "handle": "@janedev"
+  }
+}
