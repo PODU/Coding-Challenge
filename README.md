@@ -26,3 +26,4 @@ Each folder is a self-contained project with its own README.
 | 19 | [19-discord-bot](19-discord-bot/) | TypeScript | Discord bot with quotes, challenge lookups and slash commands. |
 | 20 | [20-linkedin-carousel](20-linkedin-carousel/) | Python | Turns a Markdown post into a LinkedIn carousel PDF. |
 | 21 | [21-sed](21-sed/) | Go | Stream editor supporting substitution, line selection and in-place edits. |
+| 22 | [22-dns-resolver](22-dns-resolver/) | Go | Resolves domain names by querying root, TLD and authoritative servers. |
