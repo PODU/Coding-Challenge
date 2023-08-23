@@ -27,3 +27,4 @@ Each folder is a self-contained project with its own README.
 | 20 | [20-linkedin-carousel](20-linkedin-carousel/) | Python | Turns a Markdown post into a LinkedIn carousel PDF. |
 | 21 | [21-sed](21-sed/) | Go | Stream editor supporting substitution, line selection and in-place edits. |
 | 22 | [22-dns-resolver](22-dns-resolver/) | Go | Resolves domain names by querying root, TLD and authoritative servers. |
+| 23 | [23-traceroute](23-traceroute/) | Go | Traces the network hops to a host using TTL-limited probes. |
