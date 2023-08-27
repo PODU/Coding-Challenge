@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Realtime Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Join screen -->
+    <section id="join" class="card">
+      <h1>Realtime Chat</h1>
+      <p class="muted">Pick a name and a room, then start chatting.</p>
+      <label>Name
+        <input id="join-user" type="text" placeholder="Alice" autocomplete="off" />
+      </label>
+      <label>Room
+        <input id="join-room" type="text" value="general" autocomplete="off" />
+      </label>
+      <button id="join-btn">Join</button>
+      <p id="join-error" class="error" hidden></p>
+    </section>
+
+    <!-- Chat screen -->
+    <section id="chat" class="hidden">
+      <header>
+        <div>
+          <strong id="room-name">general</strong>
+          <span id="me" class="muted"></span>
+        </div>
+        <div class="room-switch">
+          <input id="switch-room" type="text" placeholder="switch room…" autocomplete="off" />
+          <button id="switch-btn">Go</button>
+          <button id="leave-btn" class="ghost">Leave</button>
+        </div>
+      </header>
+      <div class="body">
+        <ul id="messages"></ul>
+        <aside id="presence">
+          <h2>Online</h2>
+          <ul id="members"></ul>
+        </aside>
+      </div>
+      <form id="composer">
+        <input id="text" type="text" placeholder="Type a message…" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
