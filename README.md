@@ -29,3 +29,4 @@ Each folder is a self-contained project with its own README.
 | 22 | [22-dns-resolver](22-dns-resolver/) | Go | Resolves domain names by querying root, TLD and authoritative servers. |
 | 23 | [23-traceroute](23-traceroute/) | Go | Traces the network hops to a host using TTL-limited probes. |
 | 24 | [24-realtime-chat](24-realtime-chat/) | Go | Chat server and client with rooms over TCP and WebSockets. |
+| 25 | [25-build-your-own-nats](25-build-your-own-nats/) | Go | Message broker implementing the NATS publish/subscribe protocol. |
