@@ -30,3 +30,4 @@ Each folder is a self-contained project with its own README.
 | 23 | [23-traceroute](23-traceroute/) | Go | Traces the network hops to a host using TTL-limited probes. |
 | 24 | [24-realtime-chat](24-realtime-chat/) | Go | Chat server and client with rooms over TCP and WebSockets. |
 | 25 | [25-build-your-own-nats](25-build-your-own-nats/) | Go | Message broker implementing the NATS publish/subscribe protocol. |
+| 26 | [26-build-your-own-git](26-build-your-own-git/) | Go | Git-compatible client: init, add, commit, log and push over smart HTTP. |
