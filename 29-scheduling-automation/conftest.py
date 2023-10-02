@@ -1,0 +1,8 @@
+"""Pytest bootstrap: ensure the ``src`` layout is importable without install."""
+
+import sys
+from pathlib import Path
+
+SRC = Path(__file__).parent / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))

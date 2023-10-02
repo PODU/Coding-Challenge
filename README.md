@@ -33,3 +33,4 @@ Each folder is a self-contained project with its own README.
 | 26 | [26-build-your-own-git](26-build-your-own-git/) | Go | Git-compatible client: init, add, commit, log and push over smart HTTP. |
 | 27 | [27-rate-limiter](27-rate-limiter/) | Go | Token bucket, fixed and sliding window rate limiters behind an HTTP API. |
 | 28 | [28-ntp-client](28-ntp-client/) | Go | Queries NTP servers and reports clock offset and delay. |
+| 29 | [29-scheduling-automation](29-scheduling-automation/) | Python | Calendly-style booking app that finds free slots across calendars. |
