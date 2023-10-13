@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cclisp"
+version = "1.0.0"
+description = "A small Scheme-flavoured Lisp interpreter (Coding Challenge #30)."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "cclisp" }]
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+cclisp = "cclisp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
