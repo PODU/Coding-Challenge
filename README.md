@@ -35,3 +35,4 @@ Each folder is a self-contained project with its own README.
 | 28 | [28-ntp-client](28-ntp-client/) | Go | Queries NTP servers and reports clock offset and delay. |
 | 29 | [29-scheduling-automation](29-scheduling-automation/) | Python | Calendly-style booking app that finds free slots across calendars. |
 | 30 | [30-lisp-interpreter](30-lisp-interpreter/) | Python | Scheme-flavoured Lisp interpreter with closures and a REPL. |
+| 31 | [31-qr-code-generator](31-qr-code-generator/) | Python | Encodes text into QR codes with error correction and masking. |

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qrgen"
+version = "1.0.0"
+description = "A from-scratch QR code generator (ISO/IEC 18004) with PNG/SVG/terminal rendering."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #31" }]
+keywords = ["qr", "qrcode", "reed-solomon", "iso18004"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Multimedia :: Graphics",
+]
+dependencies = []
+
+[project.optional-dependencies]
+png = ["Pillow>=9.0"]
+dev = ["pytest>=7.0", "Pillow>=9.0", "qrcode>=7.0", "pyzbar>=0.1.9", "opencv-python-headless>=4.5", "numpy>=1.21"]
+
+[project.scripts]
+qrgen = "qrgen.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
