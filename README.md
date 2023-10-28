@@ -37,3 +37,4 @@ Each folder is a self-contained project with its own README.
 | 30 | [30-lisp-interpreter](30-lisp-interpreter/) | Python | Scheme-flavoured Lisp interpreter with closures and a REPL. |
 | 31 | [31-qr-code-generator](31-qr-code-generator/) | Python | Encodes text into QR codes with error correction and masking. |
 | 32 | [32-crontab-tool](32-crontab-tool/) | Go | Parses cron expressions, explains them and runs scheduled jobs. |
+| 33 | [33-head](33-head/) | Go | Prints the first lines or bytes of files. |
