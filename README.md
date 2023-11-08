@@ -38,3 +38,4 @@ Each folder is a self-contained project with its own README.
 | 31 | [31-qr-code-generator](31-qr-code-generator/) | Python | Encodes text into QR codes with error correction and masking. |
 | 32 | [32-crontab-tool](32-crontab-tool/) | Go | Parses cron expressions, explains them and runs scheduled jobs. |
 | 33 | [33-head](33-head/) | Go | Prints the first lines or bytes of files. |
+| 34 | [34-jq](34-jq/) | Go | Command-line JSON processor implementing a large subset of jq filters. |
