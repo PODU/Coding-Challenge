@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keep — Notes</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>"
+    />
+  </head>
+  <body>
+    <header id="topbar" hidden>
+      <div class="brand"><span class="logo">📝</span> Keep</div>
+      <div class="search"><input id="search" type="search" placeholder="Search notes" /></div>
+      <div class="user">
+        <span id="user-name"></span>
+        <button id="logout" class="btn-ghost">Sign out</button>
+      </div>
+    </header>
+
+    <nav id="sidebar" hidden>
+      <button class="nav-item active" data-view="notes">🗒️ Notes</button>
+      <button class="nav-item" data-view="archived">📦 Archive</button>
+      <button class="nav-item" data-view="trashed">🗑️ Trash</button>
+      <div class="nav-labels" id="nav-labels"></div>
+    </nav>
+
+    <main id="app" hidden>
+      <section id="composer">
+        <input id="c-title" class="c-title" placeholder="Title" />
+        <textarea id="c-content" class="c-content" placeholder="Take a note…" rows="1"></textarea>
+        <div class="c-actions">
+          <input id="c-labels" class="c-labels" placeholder="labels (comma separated)" />
+          <button id="c-save" class="btn">Add</button>
+        </div>
+      </section>
+      <div id="empty" class="empty" hidden>Nothing here yet.</div>
+      <div id="grid" class="grid"></div>
+    </main>
+
+    <!-- Login screen -->
+    <div id="login" class="login">
+      <div class="login-card">
+        <div class="login-logo">📝</div>
+        <h1>Keep</h1>
+        <p>Your notes, everywhere.</p>
+        <a id="google-login" class="btn-google" href="/api/auth/google">Sign in with Google</a>
+        <div class="login-or">or</div>
+        <form id="local-form">
+          <input id="local-username" placeholder="username (local dev login)" />
+          <button class="btn" type="submit">Continue</button>
+        </form>
+        <div id="login-error" class="error-text"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- Edit modal -->
+    <div id="modal" class="modal" hidden>
+      <div class="modal-card" id="modal-card">
+        <input id="m-title" class="c-title" placeholder="Title" />
+        <textarea id="m-content" class="c-content" rows="6"></textarea>
+        <div class="m-labels" id="m-labels"></div>
+        <input id="m-labels-input" class="c-labels" placeholder="add label, press Enter" />
+        <div class="m-palette" id="m-palette"></div>
+        <div class="modal-actions">
+          <button id="m-close" class="btn">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
