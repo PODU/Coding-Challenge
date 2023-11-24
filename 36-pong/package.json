@@ -1,0 +1,20 @@
+{
+  "name": "coding-challenge-36-pong",
+  "version": "1.0.0",
+  "description": "Pong clone with a pure, deterministic game-logic core (Node + browser canvas).",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build:tsc": "tsc",
+    "build:bundle": "esbuild src/app/main.ts --bundle --format=esm --outfile=dist/bundle.js",
+    "build": "npm run build:tsc && npm run build:bundle",
+    "test": "node --import tsx --test test/physics.test.ts test/paddle.test.ts test/ai.test.ts test/serve.test.ts test/game.test.ts",
+    "start": "npm run build:bundle && echo Open index.html in a browser to play."
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "esbuild": "^0.21.5",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

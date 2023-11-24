@@ -40,3 +40,4 @@ Each folder is a self-contained project with its own README.
 | 33 | [33-head](33-head/) | Go | Prints the first lines or bytes of files. |
 | 34 | [34-jq](34-jq/) | Go | Command-line JSON processor implementing a large subset of jq filters. |
 | 35 | [35-google-keep](35-google-keep/) | TypeScript | Sticky-note app with a REST API, logins, labels and search. |
+| 36 | [36-pong](36-pong/) | TypeScript | Browser Pong with a computer opponent. |
