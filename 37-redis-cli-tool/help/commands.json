@@ -1,0 +1,49 @@
+[
+  {"name":"GET","group":"string","args":"key","summary":"Get the value of a key","since":"1.0.0"},
+  {"name":"SET","group":"string","args":"key value [EX seconds] [PX ms] [NX|XX]","summary":"Set the string value of a key","since":"1.0.0"},
+  {"name":"GETSET","group":"string","args":"key value","summary":"Set a new value and return the old value","since":"1.0.0"},
+  {"name":"APPEND","group":"string","args":"key value","summary":"Append a value to a key","since":"2.0.0"},
+  {"name":"STRLEN","group":"string","args":"key","summary":"Get the length of the value stored in a key","since":"2.2.0"},
+  {"name":"INCR","group":"string","args":"key","summary":"Increment the integer value of a key by one","since":"1.0.0"},
+  {"name":"DECR","group":"string","args":"key","summary":"Decrement the integer value of a key by one","since":"1.0.0"},
+  {"name":"INCRBY","group":"string","args":"key increment","summary":"Increment the integer value of a key by the given amount","since":"1.0.0"},
+  {"name":"MSET","group":"string","args":"key value [key value ...]","summary":"Set multiple keys to multiple values","since":"1.0.1"},
+  {"name":"MGET","group":"string","args":"key [key ...]","summary":"Get the values of all the given keys","since":"1.0.0"},
+
+  {"name":"DEL","group":"generic","args":"key [key ...]","summary":"Delete a key","since":"1.0.0"},
+  {"name":"EXISTS","group":"generic","args":"key [key ...]","summary":"Determine if a key exists","since":"1.0.0"},
+  {"name":"EXPIRE","group":"generic","args":"key seconds","summary":"Set a key's time to live in seconds","since":"1.0.0"},
+  {"name":"TTL","group":"generic","args":"key","summary":"Get the time to live for a key in seconds","since":"1.0.0"},
+  {"name":"PERSIST","group":"generic","args":"key","summary":"Remove the expiration from a key","since":"2.2.0"},
+  {"name":"KEYS","group":"generic","args":"pattern","summary":"Find all keys matching the given pattern","since":"1.0.0"},
+  {"name":"TYPE","group":"generic","args":"key","summary":"Determine the type stored at key","since":"1.0.0"},
+  {"name":"RENAME","group":"generic","args":"key newkey","summary":"Rename a key","since":"1.0.0"},
+
+  {"name":"LPUSH","group":"list","args":"key element [element ...]","summary":"Prepend one or multiple elements to a list","since":"1.0.0"},
+  {"name":"RPUSH","group":"list","args":"key element [element ...]","summary":"Append one or multiple elements to a list","since":"1.0.0"},
+  {"name":"LPOP","group":"list","args":"key [count]","summary":"Remove and get the first elements in a list","since":"1.0.0"},
+  {"name":"RPOP","group":"list","args":"key [count]","summary":"Remove and get the last elements in a list","since":"1.0.0"},
+  {"name":"LRANGE","group":"list","args":"key start stop","summary":"Get a range of elements from a list","since":"1.0.0"},
+  {"name":"LLEN","group":"list","args":"key","summary":"Get the length of a list","since":"1.0.0"},
+
+  {"name":"HSET","group":"hash","args":"key field value [field value ...]","summary":"Set the string value of a hash field","since":"2.0.0"},
+  {"name":"HGET","group":"hash","args":"key field","summary":"Get the value of a hash field","since":"2.0.0"},
+  {"name":"HGETALL","group":"hash","args":"key","summary":"Get all the fields and values in a hash","since":"2.0.0"},
+  {"name":"HDEL","group":"hash","args":"key field [field ...]","summary":"Delete one or more hash fields","since":"2.0.0"},
+
+  {"name":"SADD","group":"set","args":"key member [member ...]","summary":"Add one or more members to a set","since":"1.0.0"},
+  {"name":"SMEMBERS","group":"set","args":"key","summary":"Get all the members in a set","since":"1.0.0"},
+  {"name":"SREM","group":"set","args":"key member [member ...]","summary":"Remove one or more members from a set","since":"1.0.0"},
+  {"name":"SCARD","group":"set","args":"key","summary":"Get the number of members in a set","since":"1.0.0"},
+
+  {"name":"PING","group":"connection","args":"[message]","summary":"Ping the server","since":"1.0.0"},
+  {"name":"ECHO","group":"connection","args":"message","summary":"Echo the given string","since":"1.0.0"},
+  {"name":"SELECT","group":"connection","args":"index","summary":"Change the selected database for the current connection","since":"1.0.0"},
+  {"name":"AUTH","group":"connection","args":"[username] password","summary":"Authenticate to the server","since":"1.0.0"},
+
+  {"name":"COMMAND","group":"server","args":"[COUNT|INFO|DOCS ...]","summary":"Get array of Redis command details","since":"2.8.13"},
+  {"name":"INFO","group":"server","args":"[section]","summary":"Get information and statistics about the server","since":"1.0.0"},
+  {"name":"DBSIZE","group":"server","args":"","summary":"Return the number of keys in the selected database","since":"1.0.0"},
+  {"name":"FLUSHDB","group":"server","args":"[ASYNC|SYNC]","summary":"Remove all keys from the current database","since":"1.0.0"},
+  {"name":"CONFIG","group":"server","args":"GET|SET|RESETSTAT|REWRITE parameter [value]","summary":"Get or set server configuration parameters","since":"2.0.0"}
+]

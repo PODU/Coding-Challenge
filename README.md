@@ -41,3 +41,4 @@ Each folder is a self-contained project with its own README.
 | 34 | [34-jq](34-jq/) | Go | Command-line JSON processor implementing a large subset of jq filters. |
 | 35 | [35-google-keep](35-google-keep/) | TypeScript | Sticky-note app with a REST API, logins, labels and search. |
 | 36 | [36-pong](36-pong/) | TypeScript | Browser Pong with a computer opponent. |
+| 37 | [37-redis-cli-tool](37-redis-cli-tool/) | Go | Interactive Redis command-line client speaking RESP. |
