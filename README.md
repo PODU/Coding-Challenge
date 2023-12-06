@@ -42,3 +42,4 @@ Each folder is a self-contained project with its own README.
 | 35 | [35-google-keep](35-google-keep/) | TypeScript | Sticky-note app with a REST API, logins, labels and search. |
 | 36 | [36-pong](36-pong/) | TypeScript | Browser Pong with a computer opponent. |
 | 37 | [37-redis-cli-tool](37-redis-cli-tool/) | Go | Interactive Redis command-line client speaking RESP. |
+| 38 | [38-network-modelling](38-network-modelling/) | Python | Offline command-line tool for modelling IP networks and routing. |

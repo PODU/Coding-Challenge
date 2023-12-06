@@ -1,0 +1,5 @@
+Source,Destination,Demand
+A,D,60
+A,E,30
+B,E,20
+C,E,10

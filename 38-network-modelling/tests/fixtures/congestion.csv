@@ -1,0 +1,5 @@
+LinkId,Start,End,Capacity,Weight
+L1,A,B,100,1
+L2,A,C,50,1
+L3,C,B,50,1
+L4,B,D,100,1
