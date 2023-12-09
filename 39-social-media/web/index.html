@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Social Media Tool</title>
+<style>
+  :root { color-scheme: light dark; --gap: 12px; }
+  * { box-sizing: border-box; }
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 0; padding: 24px;
+         max-width: 880px; margin-inline: auto; }
+  h1 { font-size: 1.4rem; }
+  form { display: grid; gap: var(--gap); padding: 16px; border: 1px solid #8884;
+         border-radius: 10px; margin-bottom: 24px; }
+  label { display: grid; gap: 4px; font-weight: 600; font-size: .85rem; }
+  input, textarea, select, button { font: inherit; padding: 8px 10px;
+         border-radius: 6px; border: 1px solid #8886; background: transparent; color: inherit; }
+  textarea { min-height: 80px; resize: vertical; }
+  .row { display: flex; gap: var(--gap); flex-wrap: wrap; }
+  .row > * { flex: 1 1 160px; }
+  button { cursor: pointer; font-weight: 600; }
+  button.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #8883; vertical-align: top; }
+  .status { font-weight: 700; text-transform: uppercase; font-size: .72rem; }
+  .actions button { padding: 4px 8px; font-size: .8rem; margin-right: 4px; }
+  .muted { color: #8889; }
+  #toast { position: fixed; bottom: 16px; right: 16px; padding: 10px 14px;
+           border-radius: 8px; background: #111; color: #fff; opacity: 0;
+           transition: opacity .2s; pointer-events: none; }
+  #toast.show { opacity: .95; }
+</style>
+</head>
+<body>
+  <h1>Social Media Tool</h1>
+  <p class="muted">Create a post and publish it now or schedule it. Edit or cancel scheduled posts before they go out.</p>
+
+  <form id="create-form">
+    <input type="hidden" id="edit-id" />
+    <div class="row">
+      <label>Author
+        <input id="author" required placeholder="acme-co" />
+      </label>
+      <label>Target
+        <select id="target">
+          <option value="mock">mock</option>
+          <option value="linkedin">linkedin</option>
+          <option value="x">x</option>
+        </select>
+      </label>
+      <label>Visibility
+        <select id="visibility">
+          <option value="public">public</option>
+          <option value="connections">connections</option>
+          <option value="private">private</option>
+        </select>
+      </label>
+    </div>
+    <label>Body
+      <textarea id="body" required placeholder="What's happening?"></textarea>
+    </label>
+    <div class="row">
+      <label>Schedule for (optional)
+        <input id="scheduled_at" type="datetime-local" />
+      </label>
+    </div>
+    <div class="row">
+      <button type="submit" class="primary" id="submit-btn">Post now</button>
+      <button type="button" id="reset-btn">Reset</button>
+    </div>
+  </form>
+
+  <div class="row" style="justify-content: space-between; align-items: center;">
+    <h2 style="font-size:1.1rem;margin:0">Posts</h2>
+    <button type="button" id="refresh-btn">Refresh</button>
+  </div>
+  <table>
+    <thead><tr><th>Author</th><th>Body</th><th>Target</th><th>Status</th><th>Scheduled</th><th>Actions</th></tr></thead>
+    <tbody id="posts"></tbody>
+  </table>
+
+  <div id="toast"></div>
+
+<script>
+const API = "/api/v1/posts";
+const $ = (id) => document.getElementById(id);
+
+function toast(msg, ok = true) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.style.background = ok ? "#166534" : "#991b1b";
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+function toRFC3339(localValue) {
+  if (!localValue) return null;
+  return new Date(localValue).toISOString();
+}
+
+async function api(method, path, body) {
+  const res = await fetch(path, {
+    method,
+    headers: body ? { "Content-Type": "application/json" } : {},
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (res.status === 204) return null;
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+
+function editing() { return $("edit-id").value !== ""; }
+
+function syncSubmitLabel() {
+  const scheduled = $("scheduled_at").value !== "";
+  $("submit-btn").textContent = editing()
+    ? "Save changes"
+    : (scheduled ? "Schedule" : "Post now");
+}
+
+$("scheduled_at").addEventListener("input", syncSubmitLabel);
+
+$("create-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    if (editing()) {
+      await api("PATCH", `${API}/${$("edit-id").value}`, {
+        body: $("body").value,
+        visibility: $("visibility").value,
+        scheduled_at: toRFC3339($("scheduled_at").value),
+      });
+      toast("Post updated");
+    } else {
+      await api("POST", API, {
+        author: $("author").value,
+        body: $("body").value,
+        visibility: $("visibility").value,
+        target: $("target").value,
+        scheduled_at: toRFC3339($("scheduled_at").value),
+      });
+      toast("Post created");
+    }
+    resetForm();
+    load();
+  } catch (err) {
+    toast(err.message, false);
+  }
+});
+
+$("reset-btn").addEventListener("click", resetForm);
+$("refresh-btn").addEventListener("click", load);
+
+function resetForm() {
+  $("create-form").reset();
+  $("edit-id").value = "";
+  $("author").disabled = false;
+  $("target").disabled = false;
+  syncSubmitLabel();
+}
+
+function startEdit(p) {
+  $("edit-id").value = p.id;
+  $("author").value = p.author;
+  $("author").disabled = true;
+  $("target").value = p.target;
+  $("target").disabled = true;
+  $("visibility").value = p.visibility;
+  $("body").value = p.body;
+  $("scheduled_at").value = p.scheduled_at
+    ? new Date(p.scheduled_at).toISOString().slice(0, 16)
+    : "";
+  syncSubmitLabel();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function publishNow(id) {
+  try { await api("POST", `${API}/${id}/publish`); toast("Publishing"); load(); }
+  catch (err) { toast(err.message, false); }
+}
+
+async function cancelPost(id) {
+  try { await api("DELETE", `${API}/${id}`); toast("Canceled"); load(); }
+  catch (err) { toast(err.message, false); }
+}
+
+function esc(s) { return (s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
+
+async function load() {
+  try {
+    const data = await api("GET", `${API}?limit=100`);
+    const rows = (data.items || []).map((p) => {
+      const editable = p.status === "draft" || p.status === "scheduled";
+      const sched = p.scheduled_at ? new Date(p.scheduled_at).toLocaleString() : "—";
+      return `<tr>
+        <td>${esc(p.author)}</td>
+        <td>${esc(p.body)}</td>
+        <td>${esc(p.target)}</td>
+        <td><span class="status">${esc(p.status)}</span>${p.error ? `<br><span class="muted">${esc(p.error)}</span>` : ""}</td>
+        <td>${sched}</td>
+        <td class="actions">
+          ${editable ? `<button onclick='EDIT(${JSON.stringify(p)})'>Edit</button>` : ""}
+          ${editable ? `<button onclick="PUBLISH('${p.id}')">Publish now</button>` : ""}
+          ${editable ? `<button onclick="CANCEL('${p.id}')">Cancel</button>` : ""}
+        </td>
+      </tr>`;
+    });
+    $("posts").innerHTML = rows.join("") || `<tr><td colspan="6" class="muted">No posts yet.</td></tr>`;
+  } catch (err) {
+    toast(err.message, false);
+  }
+}
+
+window.EDIT = startEdit;
+window.PUBLISH = publishNow;
+window.CANCEL = cancelPost;
+
+resetForm();
+load();
+</script>
+</body>
+</html>
