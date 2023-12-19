@@ -44,3 +44,4 @@ Each folder is a self-contained project with its own README.
 | 37 | [37-redis-cli-tool](37-redis-cli-tool/) | Go | Interactive Redis command-line client speaking RESP. |
 | 38 | [38-network-modelling](38-network-modelling/) | Python | Offline command-line tool for modelling IP networks and routing. |
 | 39 | [39-social-media](39-social-media/) | Go | Schedules and publishes posts to social networks through a work queue. |
+| 40 | [40-curl](40-curl/) | Go | HTTP client for GET, POST, PUT and DELETE with headers and verbose mode. |
