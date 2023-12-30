@@ -46,3 +46,4 @@ Each folder is a self-contained project with its own README.
 | 39 | [39-social-media](39-social-media/) | Go | Schedules and publishes posts to social networks through a work queue. |
 | 40 | [40-curl](40-curl/) | Go | HTTP client for GET, POST, PUT and DELETE with headers and verbose mode. |
 | 41 | [41-load-tester](41-load-tester/) | Go | Fires concurrent HTTP requests and reports latency percentiles. |
+| 42 | [42-tr](42-tr/) | Go | Translates, squeezes and deletes characters, with character classes. |
