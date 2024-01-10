@@ -1,0 +1,20 @@
+{
+  "name": "tetris",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Coding Challenge #43 - Tetris (pure deterministic core + Canvas shell)",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "bundle": "esbuild src/shell/main.ts --bundle --format=esm --target=es2020 --outfile=dist/bundle.js --sourcemap",
+    "build": "tsc -p tsconfig.json --noEmit && npm run bundle",
+    "dev": "esbuild src/shell/main.ts --bundle --format=esm --target=es2020 --outfile=dist/bundle.js --sourcemap --servedir=. --serve=8000",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.5",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

@@ -47,3 +47,4 @@ Each folder is a self-contained project with its own README.
 | 40 | [40-curl](40-curl/) | Go | HTTP client for GET, POST, PUT and DELETE with headers and verbose mode. |
 | 41 | [41-load-tester](41-load-tester/) | Go | Fires concurrent HTTP requests and reports latency percentiles. |
 | 42 | [42-tr](42-tr/) | Go | Translates, squeezes and deletes characters, with character classes. |
+| 43 | [43-tetris](43-tetris/) | TypeScript | Browser Tetris with scoring, levels and piece preview. |

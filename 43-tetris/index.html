@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris — Coding Challenge #43</title>
+    <style>
+      :root {
+        --bg: #070a17;
+        --panel: #11162b;
+        --ink: #e6ecff;
+        --muted: #8b95c9;
+        --accent: #22d3ee;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: radial-gradient(1200px 800px at 50% -10%, #18204a, var(--bg));
+        color: var(--ink);
+        font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      }
+      .wrap {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        padding: 24px;
+      }
+      .stage { position: relative; }
+      #board {
+        background: #0b1021;
+        border: 2px solid #2a356b;
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        display: block;
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 14px;
+        background: rgba(7, 10, 23, 0.86);
+        border-radius: 8px;
+        padding: 24px;
+      }
+      .overlay h1 {
+        margin: 0;
+        font-size: 40px;
+        letter-spacing: 8px;
+        color: var(--accent);
+      }
+      .overlay p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+      .panel {
+        background: var(--panel);
+        border: 1px solid #2a356b;
+        border-radius: 10px;
+        padding: 18px 20px;
+        width: 200px;
+      }
+      .panel h2 {
+        margin: 0 0 8px;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .stat { display: flex; justify-content: space-between; padding: 4px 0; font-size: 18px; }
+      .stat span:first-child { color: var(--muted); font-size: 13px; align-self: center; }
+      #next { display: block; margin: 0 auto; background: #0b1021; border-radius: 6px; }
+      button {
+        width: 100%;
+        margin-top: 16px;
+        padding: 10px;
+        font: inherit;
+        color: #04121a;
+        background: var(--accent);
+        border: 0;
+        border-radius: 8px;
+        cursor: pointer;
+        letter-spacing: 2px;
+      }
+      button:hover { filter: brightness(1.08); }
+      .hint { margin-top: 14px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="stage">
+        <canvas id="board" width="300" height="600"></canvas>
+        <div class="overlay" id="overlay">
+          <h1 id="overlay-title">TETRIS</h1>
+          <p id="overlay-body"></p>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <h2>Next</h2>
+          <canvas id="next" width="88" height="88"></canvas>
+        </div>
+        <div class="panel" style="margin-top: 16px;">
+          <div class="stat"><span>Score</span><span id="score">0</span></div>
+          <div class="stat"><span>Level</span><span id="level">0</span></div>
+          <div class="stat"><span>Lines</span><span id="lines">0</span></div>
+          <button id="start-btn">START / RESTART</button>
+          <div class="hint">
+            ← → move · ↓ soft drop<br />
+            ↑ / X rotate · Z rotate CCW<br />
+            Space hard drop · P pause<br />
+            Enter start / restart
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./dist/bundle.js"></script>
+  </body>
+</html>
