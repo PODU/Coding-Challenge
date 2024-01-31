@@ -50,3 +50,4 @@ Each folder is a self-contained project with its own README.
 | 43 | [43-tetris](43-tetris/) | TypeScript | Browser Tetris with scoring, levels and piece preview. |
 | 44 | [44-dns-forwarder](44-dns-forwarder/) | Go | Forwards DNS queries upstream and caches the answers. |
 | 45 | [45-port-scanner](45-port-scanner/) | Go | Concurrent TCP port scanner with host and port ranges. |
+| 46 | [46-yq](46-yq/) | Go | YAML processor with jq-style query expressions. |

@@ -1,0 +1,10 @@
+quotes:
+  - id: 1
+    quote: "The quick brown fox jumps over the lazy dog."
+    author: Alpha
+  - id: 2
+    quote: "To be, or not to be, that is the question."
+    author: Beta
+  - id: 3
+    quote: "I think, therefore I am."
+    author: Gamma

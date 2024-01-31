@@ -1,0 +1,13 @@
+# Defaults shared via an anchor.
+defaults: &defaults
+  adapter: postgres
+  host: localhost
+
+development:
+  # Merge-free alias reuse.
+  database: dev_db
+  settings: *defaults
+
+production:
+  database: prod_db
+  settings: *defaults
