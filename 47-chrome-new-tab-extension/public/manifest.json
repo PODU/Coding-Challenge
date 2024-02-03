@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Coding Challenges New Tab",
+  "version": "1.0.0",
+  "description": "Replaces the New Tab page with a Coding Challenges dashboard: live clock, date, and open SharedSolutions pull requests.",
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "host_permissions": ["https://api.github.com/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

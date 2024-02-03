@@ -1,0 +1,23 @@
+{
+  "name": "coding-challenges-new-tab",
+  "version": "1.0.0",
+  "description": "Coding Challenge #47 — Chrome (MV3) New Tab extension with live clock and GitHub PR panel.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "build:js": "esbuild src/newtab.ts --bundle --format=iife --target=chrome110 --outfile=dist/newtab.js",
+    "copy:assets": "node scripts/copy-assets.mjs",
+    "build": "npm run clean && npm run typecheck && npm run build:js && npm run copy:assets",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "esbuild": "^0.21.5",
+    "happy-dom": "^14.12.0",
+    "rimraf": "^5.0.7",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

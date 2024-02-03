@@ -51,3 +51,4 @@ Each folder is a self-contained project with its own README.
 | 44 | [44-dns-forwarder](44-dns-forwarder/) | Go | Forwards DNS queries upstream and caches the answers. |
 | 45 | [45-port-scanner](45-port-scanner/) | Go | Concurrent TCP port scanner with host and port ranges. |
 | 46 | [46-yq](46-yq/) | Go | YAML processor with jq-style query expressions. |
+| 47 | [47-chrome-new-tab-extension](47-chrome-new-tab-extension/) | TypeScript | Chrome extension that replaces the new tab page with a dashboard. |

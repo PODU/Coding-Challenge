@@ -1,0 +1,141 @@
+:root {
+  --cc-blue: #04295b;
+  --cc-blue-panel: #0a366f;
+  --cc-text: #f4f7fb;
+  --cc-muted: #9fb4d4;
+  --cc-accent: #4ea1ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: var(--cc-blue);
+  color: var(--cc-text);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 2rem 1rem 3rem;
+  text-align: center;
+}
+
+.brand {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: "Cascadia Code", "Fira Code", "Consolas", ui-monospace, monospace;
+}
+
+.brand__cursor {
+  color: var(--cc-accent);
+  animation: blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.clock__time {
+  font-size: clamp(3.5rem, 14vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-family: "Cascadia Code", "Consolas", ui-monospace, monospace;
+}
+
+.clock__date {
+  margin-top: 0.5rem;
+  font-size: clamp(1rem, 2.6vw, 1.6rem);
+  color: var(--cc-muted);
+}
+
+.panel {
+  width: min(560px, 92vw);
+  background: var(--cc-blue-panel);
+  border: 1px solid rgba(78, 161, 255, 0.25);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem 1.25rem;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.panel__heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cc-muted);
+}
+
+.panel__body {
+  min-height: 2.5rem;
+}
+
+.panel__status {
+  margin: 0.4rem 0;
+  color: var(--cc-muted);
+  font-size: 0.95rem;
+}
+
+.panel__status--error {
+  color: #ffb4a8;
+}
+
+.pr-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pr-list__item {
+  border-radius: 8px;
+}
+
+.pr-list__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--cc-text);
+  transition: background-color 0.15s ease;
+}
+
+.pr-list__link:hover {
+  background-color: rgba(78, 161, 255, 0.15);
+}
+
+.pr-list__title {
+  font-weight: 600;
+  font-size: 0.98rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-list__meta {
+  font-size: 0.82rem;
+  color: var(--cc-muted);
+}

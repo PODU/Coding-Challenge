@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Tab</title>
+    <link rel="stylesheet" href="newtab.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="brand">Coding Challenges<span class="brand__cursor">&gt;_</span></header>
+
+      <section class="clock" aria-label="Current time and date">
+        <div id="time" class="clock__time">--:--:--</div>
+        <div id="date" class="clock__date">&nbsp;</div>
+      </section>
+
+      <section class="panel" aria-label="Open pull requests">
+        <h2 class="panel__heading">Open Pull Requests · SharedSolutions</h2>
+        <div id="panel" class="panel__body">
+          <p class="panel__status panel__status--loading">Loading open pull requests…</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="newtab.js"></script>
+  </body>
+</html>
