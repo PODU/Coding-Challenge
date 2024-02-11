@@ -1,0 +1,6 @@
+/vault
+/vault.exe
+/vault.db
+*.db
+server.log
+/internal/**/testdata/fuzz/
