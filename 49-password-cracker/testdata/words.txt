@@ -1,0 +1,8 @@
+apple
+password
+hunter2
+correcthorse
+
+# blank line above is intentional
+banana
+letmein
