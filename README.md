@@ -54,3 +54,4 @@ Each folder is a self-contained project with its own README.
 | 47 | [47-chrome-new-tab-extension](47-chrome-new-tab-extension/) | TypeScript | Chrome extension that replaces the new tab page with a dashboard. |
 | 48 | [48-data-privacy](48-data-privacy/) | Go | Service that tokenises sensitive data and stores it encrypted. |
 | 49 | [49-password-cracker](49-password-cracker/) | Go | Cracks hashes by brute force, wordlists and rainbow tables. |
+| 50 | [50-xargs](50-xargs/) | Go | Builds and runs commands from standard input, optionally in parallel. |
