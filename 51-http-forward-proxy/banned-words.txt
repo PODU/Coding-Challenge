@@ -1,0 +1,7 @@
+# banned-words.txt
+# One term per line. Blank lines and lines starting with '#' are ignored.
+# Matching is case-insensitive substring against the response body.
+
+malware
+phishing
+classified-secret

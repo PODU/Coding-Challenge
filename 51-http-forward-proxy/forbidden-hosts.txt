@@ -1,0 +1,8 @@
+# forbidden-hosts.txt
+# One host per line. Blank lines and lines starting with '#' are ignored.
+# Entries are trimmed and lower-cased. A bare domain also blocks its
+# subdomains (example.com blocks www.example.com).
+
+example.com
+ads.example.net
+tracker.local

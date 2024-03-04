@@ -55,3 +55,4 @@ Each folder is a self-contained project with its own README.
 | 48 | [48-data-privacy](48-data-privacy/) | Go | Service that tokenises sensitive data and stores it encrypted. |
 | 49 | [49-password-cracker](49-password-cracker/) | Go | Cracks hashes by brute force, wordlists and rainbow tables. |
 | 50 | [50-xargs](50-xargs/) | Go | Builds and runs commands from standard input, optionally in parallel. |
+| 51 | [51-http-forward-proxy](51-http-forward-proxy/) | Go | Forward proxy with HTTPS tunnelling and a host blocklist. |
