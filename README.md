@@ -57,3 +57,4 @@ Each folder is a self-contained project with its own README.
 | 50 | [50-xargs](50-xargs/) | Go | Builds and runs commands from standard input, optionally in parallel. |
 | 51 | [51-http-forward-proxy](51-http-forward-proxy/) | Go | Forward proxy with HTTPS tunnelling and a host blocklist. |
 | 52 | [52-docker](52-docker/) | Go | Tiny docker run: pulls a Docker Hub image and runs a command inside it. |
+| 53 | [53-bloom-filter](53-bloom-filter/) | Go | Spell checker backed by a Bloom filter saved to disk. |
