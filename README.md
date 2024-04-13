@@ -61,3 +61,4 @@ Each folder is a self-contained project with its own README.
 | 54 | [54-tar](54-tar/) | Go | Creates, lists and extracts tar archives. |
 | 55 | [55-xxd](55-xxd/) | Go | Makes hex dumps of files and reverses them back to binary. |
 | 56 | [56-chess](56-chess/) | Go | Chess engine with full move rules and a minimax computer player. |
+| 57 | [57-snake](57-snake/) | Python | Classic Snake game. |

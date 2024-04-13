@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snake-game"
+version = "1.0.0"
+description = "Classic Snake with a pure, deterministic, headlessly-testable core (Coding Challenge #57)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aditya Poduval" }]
+keywords = ["snake", "game", "curses", "terminal"]
+# Core is stdlib-only. The curses renderer needs `windows-curses` on Windows
+# (curses ships with CPython on Linux/macOS).
+dependencies = ['windows-curses; platform_system == "Windows"']
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+snake = "snake.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
