@@ -62,3 +62,4 @@ Each folder is a self-contained project with its own README.
 | 55 | [55-xxd](55-xxd/) | Go | Makes hex dumps of files and reverses them back to binary. |
 | 56 | [56-chess](56-chess/) | Go | Chess engine with full move rules and a minimax computer player. |
 | 57 | [57-snake](57-snake/) | Python | Classic Snake game. |
+| 58 | [58-password-manager](58-password-manager/) | Go | Encrypted command-line password vault with a master password. |
