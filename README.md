@@ -63,3 +63,4 @@ Each folder is a self-contained project with its own README.
 | 56 | [56-chess](56-chess/) | Go | Chess engine with full move rules and a minimax computer player. |
 | 57 | [57-snake](57-snake/) | Python | Classic Snake game. |
 | 58 | [58-password-manager](58-password-manager/) | Go | Encrypted command-line password vault with a master password. |
+| 59 | [59-netcat](59-netcat/) | Go | Reads and writes data across TCP and UDP connections. |
