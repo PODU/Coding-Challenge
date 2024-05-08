@@ -1,0 +1,28 @@
+{{define "title"}}Paste {{.Paste.ID}}{{end}}
+{{define "content"}}
+{{if .DeleteKey}}
+<div class="notice">
+  Paste created. Save your delete key — it is shown only once and is required to delete this paste via the API:
+  <br><code>{{.DeleteKey}}</code>
+</div>
+{{end}}
+
+<div class="meta">
+  ID: <strong>{{.Paste.ID}}</strong>
+  · Created {{.CreatedAt}}
+  {{if .ExpiresAt}}· Expires {{.ExpiresAt}}{{else}}· Never expires{{end}}
+  {{if .Paste.Language}}· {{.Paste.Language}}{{end}}
+</div>
+
+<div class="toolbar">
+  <button type="button" data-copy-target="#paste-content">Copy</button>
+  <a class="btn secondary" href="/{{.Paste.ID}}/raw">Raw</a>
+  <a class="btn secondary" href="/">New</a>
+  <form method="POST" action="/{{.Paste.ID}}/delete" onsubmit="return confirm('Delete this paste? This cannot be undone.');" style="display:inline">
+    <input type="hidden" name="delete_key" value="{{.DeleteKey}}">
+    <button type="submit" class="btn danger">Delete</button>
+  </form>
+</div>
+
+<pre><code id="paste-content" class="{{.CSSClass}}">{{.Paste.Content}}</code></pre>
+{{end}}

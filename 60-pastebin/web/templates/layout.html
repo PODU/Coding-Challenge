@@ -1,0 +1,20 @@
+{{define "layout"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{template "title" .}} — Pastebin</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">📋 Pastebin</a></h1>
+    <a class="link" href="/">New paste</a>
+  </header>
+  <main>
+    {{template "content" .}}
+  </main>
+  <footer>Coding Challenge #60 — a self-contained Go Pastebin.</footer>
+  <script src="/static/copy.js"></script>
+</body>
+</html>{{end}}

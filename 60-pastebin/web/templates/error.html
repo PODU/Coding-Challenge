@@ -1,0 +1,8 @@
+{{define "title"}}{{.Code}}{{end}}
+{{define "content"}}
+<div class="notice error-box">
+  <strong>{{.Code}} — {{.Title}}</strong>
+  <br>{{.Message}}
+</div>
+<p><a class="btn" href="/">Back to new paste</a></p>
+{{end}}
