@@ -66,3 +66,4 @@ Each folder is a self-contained project with its own README.
 | 59 | [59-netcat](59-netcat/) | Go | Reads and writes data across TCP and UDP connections. |
 | 60 | [60-pastebin](60-pastebin/) | Go | Web app for sharing text snippets with expiry. |
 | 61 | [61-dropbox](61-dropbox/) | Go | Syncs files between clients through a central server. |
+| 62 | [62-git-contributions](62-git-contributions/) | Go | Draws a GitHub-style contribution heatmap from git history. |
