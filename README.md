@@ -67,3 +67,4 @@ Each folder is a self-contained project with its own README.
 | 60 | [60-pastebin](60-pastebin/) | Go | Web app for sharing text snippets with expiry. |
 | 61 | [61-dropbox](61-dropbox/) | Go | Syncs files between clients through a central server. |
 | 62 | [62-git-contributions](62-git-contributions/) | Go | Draws a GitHub-style contribution heatmap from git history. |
+| 63 | [63-space-invaders](63-space-invaders/) | TypeScript | Browser Space Invaders with waves, bunkers and scoring. |
