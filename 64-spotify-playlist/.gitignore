@@ -1,0 +1,21 @@
+# Secrets / token cache
+.env
+.spotify_playlist_token.json
+*.token.json
+
+# Exports
+*.csv
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
