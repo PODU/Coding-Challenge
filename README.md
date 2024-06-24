@@ -69,3 +69,4 @@ Each folder is a self-contained project with its own README.
 | 62 | [62-git-contributions](62-git-contributions/) | Go | Draws a GitHub-style contribution heatmap from git history. |
 | 63 | [63-space-invaders](63-space-invaders/) | TypeScript | Browser Space Invaders with waves, bunkers and scoring. |
 | 64 | [64-spotify-playlist](64-spotify-playlist/) | Python | Backs up and restores Spotify playlists. |
+| 65 | [65-minesweeper](65-minesweeper/) | TypeScript | Minesweeper in the terminal with flagging and difficulty levels. |
