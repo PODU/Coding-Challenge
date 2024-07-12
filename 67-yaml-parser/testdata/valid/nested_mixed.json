@@ -1,0 +1,32 @@
+{
+  "config": {
+    "flags": [
+      "a",
+      "b"
+    ],
+    "retries": 3
+  },
+  "servers": [
+    {
+      "name": "web",
+      "ports": [
+        80,
+        443
+      ],
+      "tags": [
+        "frontend",
+        "public"
+      ]
+    },
+    {
+      "name": "db",
+      "options": {
+        "pool": 10,
+        "ssl": true
+      },
+      "ports": [
+        5432
+      ]
+    }
+  ]
+}

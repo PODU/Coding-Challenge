@@ -1,0 +1,14 @@
+{
+  "double_hex": "A",
+  "double_newline": "a\nb",
+  "double_quote_in": "she said \"hi\"",
+  "double_slash": "a/b",
+  "double_tab": "hello\tworld",
+  "double_unicode": "é",
+  "keep_bool": "true",
+  "keep_null": "null",
+  "keep_number": "123",
+  "single_backslash": "a\\b",
+  "single_escape": "it's fine",
+  "single_simple": "plain text"
+}

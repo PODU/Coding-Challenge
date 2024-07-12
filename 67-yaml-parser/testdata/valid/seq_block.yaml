@@ -1,0 +1,11 @@
+fruits:
+  - apple
+  - banana
+  - cherry
+same_indent:
+- one
+- two
+nested:
+  - - a
+    - b
+  - - c

@@ -1,0 +1,4 @@
+{
+  "after": "done",
+  "literal": "line one\nline two\n  indented\nline three\n"
+}

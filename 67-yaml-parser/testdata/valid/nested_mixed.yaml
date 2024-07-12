@@ -1,0 +1,12 @@
+servers:
+  - name: web
+    ports: [80, 443]
+    tags:
+      - frontend
+      - public
+  - name: db
+    ports: [5432]
+    options: {ssl: true, pool: 10}
+config:
+  retries: 3
+  flags: [a, b]

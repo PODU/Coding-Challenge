@@ -1,0 +1,7 @@
+person:
+  name: John
+  contact:
+    email: john@example.com
+    phone: 555-1234
+  active: true
+company: Acme

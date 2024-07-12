@@ -1,0 +1,10 @@
+{
+  "done": true,
+  "list": [
+    "one",
+    "two"
+  ],
+  "name": "value",
+  "quoted": "value # not a comment",
+  "url": "http://example.com#anchor"
+}

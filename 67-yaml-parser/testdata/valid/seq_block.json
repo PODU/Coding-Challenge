@@ -1,0 +1,20 @@
+{
+  "fruits": [
+    "apple",
+    "banana",
+    "cherry"
+  ],
+  "nested": [
+    [
+      "a",
+      "b"
+    ],
+    [
+      "c"
+    ]
+  ],
+  "same_indent": [
+    "one",
+    "two"
+  ]
+}

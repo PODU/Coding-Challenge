@@ -1,0 +1,9 @@
+{
+  "empty_map": {},
+  "empty_seq": [],
+  "empty_value": null,
+  "explicit_null": null,
+  "nested": {
+    "also_empty": []
+  }
+}

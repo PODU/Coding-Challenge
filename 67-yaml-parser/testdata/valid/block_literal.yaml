@@ -1,0 +1,6 @@
+literal: |
+  line one
+  line two
+    indented
+  line three
+after: done

@@ -1,0 +1,5 @@
+numbers: [1, 2, 3]
+mixed: [a, true, 3.5, null, "quoted"]
+empty: []
+nested: [[1, 2], [3, 4]]
+trailing: [1, 2, 3,]

@@ -1,0 +1,6 @@
+empty_seq: []
+empty_map: {}
+empty_value:
+explicit_null: null
+nested:
+  also_empty: []

@@ -1,0 +1,9 @@
+clip: |
+  text
+strip: |-
+  text
+keep: |+
+  text
+
+
+done: true

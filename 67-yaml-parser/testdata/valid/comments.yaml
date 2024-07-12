@@ -1,0 +1,9 @@
+# This is a full-line comment
+name: value  # trailing comment
+url: http://example.com#anchor
+quoted: "value # not a comment"
+list:
+  - one   # comment after item
+  - two
+# another full-line comment
+done: true

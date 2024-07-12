@@ -1,0 +1,23 @@
+bool_true: true
+bool_yes: yes
+bool_on: on
+bool_false: false
+bool_off: off
+null_word: null
+null_tilde: ~
+null_empty:
+int_dec: 42
+int_neg: -7
+int_pos: +3
+int_hex: 0x12d4
+int_oct: 023332
+int_oct2: 0o23332
+float_basic: 3.14
+float_neg: -0.5
+float_exp: 6.8e-3
+float_inf: .inf
+float_ninf: -.inf
+float_nan: .nan
+str_plain: hello world
+str_leading_zero: "08"
+str_octal_invalid: 08
