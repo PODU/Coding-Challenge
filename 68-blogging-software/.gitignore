@@ -1,0 +1,10 @@
+# Build artifacts
+/blog
+/blog.exe
+
+# Runtime data
+/data/
+/public/
+*.db
+*.db-shm
+*.db-wal

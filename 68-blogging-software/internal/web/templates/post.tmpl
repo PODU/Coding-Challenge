@@ -1,0 +1,36 @@
+{{define "title"}}{{.Post.Title}} &middot; {{.Site.Title}}{{end}}
+{{define "content"}}
+<article class="post">
+  <h1>{{.Post.Title}}</h1>
+  <p class="meta"><time datetime="{{rfc3339 .Post.PublishedAt}}">{{date .Post.PublishedAt}}</time></p>
+  <div class="post-body">{{safeHTML .Post.HTMLCached}}</div>
+</article>
+
+<section id="comments" class="comments">
+  <h2>Comments</h2>
+  {{if .Comments}}
+    <ul class="comment-list">
+      {{range .Comments}}
+        <li class="comment">
+          <p class="comment-meta"><span class="comment-name">{{.Name}}</span>
+            <time datetime="{{rfc3339 .CreatedAt}}">{{date .CreatedAt}}</time></p>
+          <p class="comment-body">{{.Body}}</p>
+        </li>
+      {{end}}
+    </ul>
+  {{else}}
+    <p class="empty">No comments yet. Be the first!</p>
+  {{end}}
+
+  <h3>Leave a comment</h3>
+  {{if .CommentErrors}}
+    <ul class="errors">{{range .CommentErrors}}<li>{{.}}</li>{{end}}</ul>
+  {{end}}
+  <form class="comment-form" method="post" action="/posts/{{.Post.ID}}/comments">
+    <label>Name <input type="text" name="name" maxlength="80" required value="{{.Form.Name}}"></label>
+    <label>Email <input type="email" name="email" maxlength="254" required value="{{.Form.Email}}"></label>
+    <label>Comment <textarea name="body" maxlength="4000" rows="4" required>{{.Form.Body}}</textarea></label>
+    <button type="submit">Post comment</button>
+  </form>
+</section>
+{{end}}

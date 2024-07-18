@@ -1,0 +1,32 @@
+{{define "title"}}Editor &middot; {{.Site.Title}}{{end}}
+{{define "content"}}
+<section class="editor">
+  <div class="editor-bar">
+    <h1>Your posts</h1>
+    <div class="editor-actions">
+      <a class="button" href="/editor/post">New post</a>
+      <form method="post" action="/editor/logout" class="inline">
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+        <button type="submit">Log out</button>
+      </form>
+    </div>
+  </div>
+  {{if .Posts}}
+    <table class="post-table">
+      <thead><tr><th>Title</th><th>Status</th><th>Published</th><th></th></tr></thead>
+      <tbody>
+        {{range .Posts}}
+          <tr>
+            <td><a href="/editor/post/{{.ID}}">{{.Title}}</a></td>
+            <td><span class="status status-{{.Status}}">{{.Status}}</span></td>
+            <td>{{if .PublishedAt}}{{date .PublishedAt}}{{else}}&mdash;{{end}}</td>
+            <td><a href="/posts/{{.ID}}">view</a></td>
+          </tr>
+        {{end}}
+      </tbody>
+    </table>
+  {{else}}
+    <p class="empty">No posts yet. Create your first one!</p>
+  {{end}}
+</section>
+{{end}}

@@ -1,0 +1,13 @@
+{{define "title"}}Login &middot; {{.Site.Title}}{{end}}
+{{define "content"}}
+<section class="login">
+  <h1>Editor login</h1>
+  {{if .Error}}<p class="errors">{{.Error}}</p>{{end}}
+  <form method="post" action="/editor/login">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    <label>Username <input type="text" name="username" required autofocus></label>
+    <label>Password <input type="password" name="password" required></label>
+    <button type="submit">Log in</button>
+  </form>
+</section>
+{{end}}

@@ -1,0 +1,31 @@
+{{define "title"}}{{if .Post.ID}}Edit post{{else}}New post{{end}} &middot; {{.Site.Title}}{{end}}
+{{define "content"}}
+<section class="editor">
+  <h1>{{if .Post.ID}}Edit post{{else}}New post{{end}}</h1>
+  {{if .Errors}}
+    <ul class="errors">{{range .Errors}}<li>{{.}}</li>{{end}}</ul>
+  {{end}}
+  <form class="post-form" method="post" action="{{.Action}}">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    <label>Title <input type="text" name="title" maxlength="200" required value="{{.Post.Title}}"></label>
+    <label>Summary <input type="text" name="summary" maxlength="500" value="{{.Post.Summary}}"></label>
+    <label>Content (Markdown)
+      <textarea name="content" rows="18">{{.Post.MarkdownRaw}}</textarea>
+    </label>
+    <label>Status
+      <select name="status">
+        <option value="draft" {{if eq (printf "%s" .Post.Status) "draft"}}selected{{end}}>Draft</option>
+        <option value="published" {{if eq (printf "%s" .Post.Status) "published"}}selected{{end}}>Published</option>
+      </select>
+    </label>
+    <label>Published at (optional, RFC3339)
+      <input type="text" name="published_at" placeholder="2026-06-27T10:00:00Z" value="{{.PublishedAtStr}}">
+    </label>
+    <div class="form-actions">
+      <button type="submit">Save</button>
+      {{if .Post.ID}}<a class="button secondary" href="/posts/{{.Post.ID}}">View</a>{{end}}
+      <a class="button secondary" href="/editor">Cancel</a>
+    </div>
+  </form>
+</section>
+{{end}}

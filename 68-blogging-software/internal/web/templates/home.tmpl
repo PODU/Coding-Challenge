@@ -1,0 +1,16 @@
+{{define "content"}}
+<section class="post-list">
+  {{if .Posts}}
+    {{range .Posts}}
+      <article class="post-summary">
+        <h2><a href="/posts/{{.ID}}">{{.Title}}</a></h2>
+        <p class="meta"><time datetime="{{rfc3339 .PublishedAt}}">{{date .PublishedAt}}</time></p>
+        {{if .Summary}}<p class="summary">{{.Summary}}</p>{{end}}
+        <p><a class="read-more" href="/posts/{{.ID}}">Read more &rarr;</a></p>
+      </article>
+    {{end}}
+  {{else}}
+    <p class="empty">No posts yet. Check back soon!</p>
+  {{end}}
+</section>
+{{end}}

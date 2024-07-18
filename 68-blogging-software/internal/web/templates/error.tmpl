@@ -1,0 +1,8 @@
+{{define "title"}}{{.Code}} {{.Message}} &middot; {{.Site.Title}}{{end}}
+{{define "content"}}
+<section class="error-page">
+  <h1>{{.Code}}</h1>
+  <p>{{.Message}}</p>
+  <p><a href="/">&larr; Back home</a></p>
+</section>
+{{end}}
