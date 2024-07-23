@@ -73,3 +73,4 @@ Each folder is a self-contained project with its own README.
 | 66 | [66-zip-file-cracker](66-zip-file-cracker/) | Python | Recovers ZIP passwords by brute force and wordlists. |
 | 67 | [67-yaml-parser](67-yaml-parser/) | Go | Parses YAML documents into native values. |
 | 68 | [68-blogging-software](68-blogging-software/) | Go | Blog engine with posts, Markdown rendering and an admin area. |
+| 69 | [69-notion-clone](69-notion-clone/) | TypeScript | Block-based document editor with pages and nested blocks. |
