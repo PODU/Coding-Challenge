@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheel of Names</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Wheel of Names</h1>
+      <p class="tagline">Coding Challenge #71 — enter names, spin, win.</p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <label for="names" class="field-label">Names (one per line)</label>
+        <textarea id="names" spellcheck="false" placeholder="Alice
+Bob
+Carol
+Dave"></textarea>
+
+        <div class="row">
+          <button id="shuffle" type="button">Shuffle</button>
+          <button id="sort" type="button">Sort</button>
+          <button id="advanced-toggle" type="button">Advanced…</button>
+        </div>
+
+        <div id="advanced" class="advanced hidden">
+          <p class="hint">Set a colour and relative size (weight) per name.</p>
+          <div id="advanced-rows"></div>
+        </div>
+
+        <div class="row">
+          <label class="checkbox">
+            <input id="remove-winner" type="checkbox" />
+            Remove winner after spin
+          </label>
+        </div>
+
+        <p id="count" class="count"></p>
+      </section>
+
+      <section class="stage">
+        <canvas id="wheel" width="640" height="640" aria-label="Wheel of names"></canvas>
+        <button id="spin" type="button" class="spin-btn">SPIN</button>
+        <div id="winner" class="winner" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "wheel-of-names",
+  "version": "1.0.0",
+  "description": "Coding Challenge #71 - Wheel of Names (TypeScript, canvas, deterministic core)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
+  }
+}
