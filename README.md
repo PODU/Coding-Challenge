@@ -77,3 +77,4 @@ Each folder is a self-contained project with its own README.
 | 70 | [70-memcached-cli](70-memcached-cli/) | Go | Command-line client for talking to Memcached servers. |
 | 71 | [71-wheel-of-names](71-wheel-of-names/) | TypeScript | Spinning wheel that picks a random name. |
 | 72 | [72-sudoku](72-sudoku/) | Go | Sudoku solver and puzzle generator. |
+| 73 | [73-text-editor](73-text-editor/) | Go | Modal terminal text editor in the style of kilo and vim, with search. |
