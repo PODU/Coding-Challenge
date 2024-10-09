@@ -1,0 +1,21 @@
+{
+  "name": "asteroids",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coding Challenge #74 — Asteroids (deterministic TS core + Canvas shell)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  }
+}

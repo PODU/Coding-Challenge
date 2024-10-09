@@ -78,3 +78,4 @@ Each folder is a self-contained project with its own README.
 | 71 | [71-wheel-of-names](71-wheel-of-names/) | TypeScript | Spinning wheel that picks a random name. |
 | 72 | [72-sudoku](72-sudoku/) | Go | Sudoku solver and puzzle generator. |
 | 73 | [73-text-editor](73-text-editor/) | Go | Modal terminal text editor in the style of kilo and vim, with search. |
+| 74 | [74-asteroids](74-asteroids/) | TypeScript | Browser Asteroids with vector graphics and physics. |
