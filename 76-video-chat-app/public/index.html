@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Chat — Coding Challenge #76</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Video Chat</h1>
+      <p class="sub">
+        Peer-to-peer, end-to-end encrypted (WebRTC / DTLS-SRTP). The server only
+        relays signalling text — media flows directly between the two browsers.
+      </p>
+    </header>
+
+    <section class="controls">
+      <button id="createBtn">Create room</button>
+      <input id="roomInput" type="text" placeholder="room id" autocomplete="off" />
+      <button id="joinBtn">Join</button>
+      <span class="meta">room: <span id="roomLabel">—</span></span>
+      <span class="meta">status: <span id="status" data-state="idle">idle</span></span>
+    </section>
+
+    <section class="videos">
+      <figure>
+        <video id="localVideo" autoplay playsinline muted></video>
+        <figcaption>You (muted)</figcaption>
+      </figure>
+      <figure>
+        <video id="remoteVideo" autoplay playsinline></video>
+        <figcaption>Peer</figcaption>
+      </figure>
+    </section>
+
+    <section class="call-controls">
+      <button id="muteBtn" disabled>Mute</button>
+      <button id="cameraBtn" disabled>Camera off</button>
+      <button id="hangupBtn" disabled>Hang up</button>
+    </section>
+
+    <section class="chat">
+      <h2>Chat <small>(RTCDataChannel)</small></h2>
+      <div id="chatLog" class="chat-log"></div>
+      <div class="chat-input-row">
+        <input id="chatInput" type="text" placeholder="type a message…" autocomplete="off" disabled />
+        <button id="chatSend" disabled>Send</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Open this page in two tabs (or two devices on the same origin). Click
+        <strong>Create room</strong> in the first, share the room id, then
+        <strong>Join</strong> in the second. Requires <code>https</code> or
+        <code>localhost</code> for camera access.
+      </p>
+    </footer>
+
+    <script type="module" src="/dist/client/main.js"></script>
+  </body>
+</html>

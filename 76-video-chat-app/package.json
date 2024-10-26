@@ -1,0 +1,22 @@
+{
+  "name": "video-chat-app",
+  "version": "1.0.0",
+  "description": "Coding Challenge #76 — peer-to-peer video chat (WebRTC) with a REST/long-poll signalling server.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server/server.js",
+    "dev": "tsc && node dist/server/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

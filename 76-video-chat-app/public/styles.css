@@ -1,0 +1,97 @@
+:root {
+  --bg: #0f1220;
+  --panel: #1a1f33;
+  --panel-2: #232a45;
+  --text: #e7e9f3;
+  --muted: #9aa3c0;
+  --accent: #5b8cff;
+  --accent-2: #36d399;
+  --danger: #ff5c7a;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+header h1 { margin: 0 0 0.25rem; }
+.sub { color: var(--muted); margin: 0 0 1.25rem; max-width: 60ch; }
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { filter: brightness(1.08); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+#hangupBtn { background: var(--danger); }
+
+input[type="text"] {
+  background: var(--panel-2);
+  border: 1px solid #313a5e;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+.controls, .call-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.meta { color: var(--muted); font-size: 0.9rem; }
+#status { font-weight: 600; color: var(--accent); }
+#status[data-state="connected"] { color: var(--accent-2); }
+#status[data-state="closed"] { color: var(--danger); }
+
+.videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+figure { margin: 0; background: var(--panel); border-radius: var(--radius); padding: 0.5rem; }
+video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  border-radius: 8px;
+  object-fit: cover;
+}
+#localVideo { transform: scaleX(-1); } /* mirror local preview */
+figcaption { color: var(--muted); font-size: 0.85rem; padding: 0.4rem 0.2rem 0.1rem; }
+
+.chat { background: var(--panel); border-radius: var(--radius); padding: 1rem; }
+.chat h2 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+.chat h2 small { color: var(--muted); font-weight: 400; }
+.chat-log {
+  height: 180px;
+  overflow-y: auto;
+  background: var(--panel-2);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+.chat-line { margin-bottom: 0.25rem; word-break: break-word; }
+.chat-who { color: var(--accent); font-weight: 600; }
+.chat-input-row { display: flex; gap: 0.6rem; }
+.chat-input-row input { flex: 1; }
+
+footer { color: var(--muted); font-size: 0.85rem; margin-top: 1.5rem; }
+footer code { background: var(--panel-2); padding: 0.1rem 0.35rem; border-radius: 4px; }

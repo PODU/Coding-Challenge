@@ -80,3 +80,4 @@ Each folder is a self-contained project with its own README.
 | 73 | [73-text-editor](73-text-editor/) | Go | Modal terminal text editor in the style of kilo and vim, with search. |
 | 74 | [74-asteroids](74-asteroids/) | TypeScript | Browser Asteroids with vector graphics and physics. |
 | 75 | [75-duplicate-file](75-duplicate-file/) | Go | Finds duplicate files by size and content hash. |
+| 76 | [76-video-chat-app](76-video-chat-app/) | TypeScript | Peer-to-peer video calls over WebRTC with a signalling server. |
