@@ -81,3 +81,4 @@ Each folder is a self-contained project with its own README.
 | 74 | [74-asteroids](74-asteroids/) | TypeScript | Browser Asteroids with vector graphics and physics. |
 | 75 | [75-duplicate-file](75-duplicate-file/) | Go | Finds duplicate files by size and content hash. |
 | 76 | [76-video-chat-app](76-video-chat-app/) | TypeScript | Peer-to-peer video calls over WebRTC with a signalling server. |
+| 77 | [77-static-site-generator](77-static-site-generator/) | Go | Builds a website from Markdown content and templates. |
