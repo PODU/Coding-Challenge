@@ -1,0 +1,50 @@
+server:
+  listen: ":8080"
+
+storage:
+  driver: sqlite          # sqlite | memory
+  dsn: ./uptime.db
+  retention: 720h         # informational; raw-row pruning is an extension
+
+defaults:                 # applied when a monitor omits a field
+  interval: 60s
+  timeout: 10s
+  method: HEAD
+  expect_status: [200-399]
+  latency_threshold: 0    # 0 = disabled
+  alert_threshold: 3      # consecutive failures before a DOWN alert
+
+alerters:
+  - type: log
+  # - type: webhook
+  #   url: https://hooks.example.com/uptime
+  # - type: email
+  #   smtp: smtp.example.com:587
+  #   from: alerts@example.com
+  #   to: [oncall@example.com]
+
+monitors:
+  - id: example-head
+    name: "Example (HEAD)"
+    kind: http
+    target: https://example.com
+    interval: 30s
+    timeout: 5s
+
+  - id: example-get
+    name: "Example (GET + TTFB)"
+    kind: http
+    target: https://example.com/
+    interval: 30s
+    timeout: 5s
+    method: GET
+    expect_status: [200]
+    latency_threshold: 2s
+    alert_threshold: 2
+
+  - id: dns-tcp
+    name: "Cloudflare DNS (TCP)"
+    kind: tcp
+    target: 1.1.1.1:53
+    interval: 15s
+    timeout: 3s
