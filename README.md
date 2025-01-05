@@ -84,3 +84,4 @@ Each folder is a self-contained project with its own README.
 | 77 | [77-static-site-generator](77-static-site-generator/) | Go | Builds a website from Markdown content and templates. |
 | 78 | [78-uptime-monitoring](78-uptime-monitoring/) | Go | Checks HTTP and TCP endpoints on a schedule and alerts on outages. |
 | 79 | [79-socat](79-socat/) | Go | Relays data between two bidirectional streams. |
+| 80 | [80-ocr](80-ocr/) | Python | Recognises text in images. |

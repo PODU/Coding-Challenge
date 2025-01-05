@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ocr"
+version = "1.0.0"
+description = "Offline, deterministic OCR via template/matrix matching (Pillow + NumPy)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #80" }]
+keywords = ["ocr", "template-matching", "pillow", "numpy", "computer-vision"]
+dependencies = [
+    "pillow>=10.1",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+ocr = "ocr.cli:main"
+
+[tool.setuptools]
+packages = ["ocr"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
