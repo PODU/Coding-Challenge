@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderDeckHtml — template injection > matches the full-page golden snapshot 1`] = `
+"<!doctype html><title>Golden</title><style>
+.slide{color:red}
+</style><main data-count="2"><section class="slide" id="slide-1" data-index="0">
+<h1>Slide one</h1>
+<ul>
+<li>a</li>
+<li>b</li>
+</ul>
+</section>
+<section class="slide" id="slide-2" data-index="1">
+<h2>Slide two</h2>
+</section></main><script>
+console.log("client");
+</script>"
+`;

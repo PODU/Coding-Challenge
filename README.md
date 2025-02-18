@@ -87,3 +87,4 @@ Each folder is a self-contained project with its own README.
 | 80 | [80-ocr](80-ocr/) | Python | Recognises text in images. |
 | 81 | [81-brainfuck-interpreter](81-brainfuck-interpreter/) | Go | Brainfuck interpreter with a bytecode compiler and optimisation passes. |
 | 82 | [82-markdown-to-pdf](82-markdown-to-pdf/) | Python | Converts Markdown documents into styled PDFs. |
+| 83 | [83-markdown-presentation](83-markdown-presentation/) | TypeScript | Turns a Markdown file into a slide deck. |

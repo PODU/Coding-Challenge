@@ -1,0 +1,6 @@
+node_modules/
+lib/
+dist/
+out.pdf
+.mdpresent-build/
+*.tsbuildinfo

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  {{STYLE}}
+  {{HEAD_EXTRA}}
+</head>
+<body>
+  <main id="deck" data-count="{{COUNT}}">
+    {{SLIDES}}
+  </main>
+  <footer id="controls" aria-hidden="false">
+    <button id="prev" type="button" aria-label="Previous slide">&#8592;</button>
+    <span id="progress"><span id="current">1</span> / <span id="total">{{COUNT}}</span></span>
+    <button id="next" type="button" aria-label="Next slide">&#8594;</button>
+  </footer>
+  {{SCRIPT}}
+</body>
+</html>
