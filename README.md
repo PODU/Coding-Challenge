@@ -88,3 +88,4 @@ Each folder is a self-contained project with its own README.
 | 81 | [81-brainfuck-interpreter](81-brainfuck-interpreter/) | Go | Brainfuck interpreter with a bytecode compiler and optimisation passes. |
 | 82 | [82-markdown-to-pdf](82-markdown-to-pdf/) | Python | Converts Markdown documents into styled PDFs. |
 | 83 | [83-markdown-presentation](83-markdown-presentation/) | TypeScript | Turns a Markdown file into a slide deck. |
+| 84 | [84-mandelbrot-set](84-mandelbrot-set/) | Go | Renders the Mandelbrot set to PNG images. |
