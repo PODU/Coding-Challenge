@@ -89,3 +89,4 @@ Each folder is a self-contained project with its own README.
 | 82 | [82-markdown-to-pdf](82-markdown-to-pdf/) | Python | Converts Markdown documents into styled PDFs. |
 | 83 | [83-markdown-presentation](83-markdown-presentation/) | TypeScript | Turns a Markdown file into a slide deck. |
 | 84 | [84-mandelbrot-set](84-mandelbrot-set/) | Go | Renders the Mandelbrot set to PNG images. |
+| 85 | [85-time-zone-converter](85-time-zone-converter/) | Go | Converts times between time zones from the command line. |
