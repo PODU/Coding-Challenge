@@ -1,0 +1,8 @@
+const url = "http://example.com"; // strip me
+const s = "/* not a comment */";
+const t = 'it\'s // fine';
+const re = /\/\//;
+const ok = /ab/.test(x);
+const div = a / b; // division then comment
+const tmpl = `path ${url}/x // still template`;
+let q = b // 2

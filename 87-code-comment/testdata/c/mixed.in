@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+/* a block comment
+   over two lines */
+int main(void) {
+    char *p = "// not a comment";
+    char *q = "/* still a string */";
+    char c = '#';
+    int x = 5; // trailing comment
+    // a full line comment
+    return 0;
+}

@@ -1,0 +1,7 @@
+// leading line comment
+function add(a, b) {
+  /* block
+     comment */
+  return a + b; // trailing
+}
+const x = 1; /* inline */ const y = 2;

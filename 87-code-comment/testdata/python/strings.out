@@ -1,0 +1,9 @@
+a = "# not a comment"
+b = '/* nope */'
+c = "http://example.com/path"
+d = """
+triple # not a comment
+still string
+"""
+e = r"raw \" string # not comment"
+f = '#'

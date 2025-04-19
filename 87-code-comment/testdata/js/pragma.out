@@ -1,0 +1,4 @@
+// eslint-disable-next-line
+const a = 1;
+// @ts-ignore
+const b = 2;

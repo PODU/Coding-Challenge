@@ -1,0 +1,7 @@
+# a leading comment
+def add(a, b):  # trailing comment
+    # inner comment
+    return a + b  # add them
+
+
+x = 1    # spaced trailing

@@ -1,0 +1,19 @@
+// Package main is a demo.
+package main
+
+import "fmt"
+
+// Greeter greets people.
+type Greeter struct{ name string }
+
+// Hello returns a greeting.
+// It spans two doc lines.
+func Hello(name string) string {
+	// inner comment, removed
+	msg := "// not a comment"
+	return fmt.Sprintf("hi %s", msg) // trailing, removed
+}
+
+// This comment is separated by a blank line below.
+
+func Detached() {}

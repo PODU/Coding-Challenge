@@ -91,3 +91,4 @@ Each folder is a self-contained project with its own README.
 | 84 | [84-mandelbrot-set](84-mandelbrot-set/) | Go | Renders the Mandelbrot set to PNG images. |
 | 85 | [85-time-zone-converter](85-time-zone-converter/) | Go | Converts times between time zones from the command line. |
 | 86 | [86-strace](86-strace/) | Go | Traces the system calls a process makes. |
+| 87 | [87-code-comment](87-code-comment/) | Go | Strips comments from source code in many languages. |

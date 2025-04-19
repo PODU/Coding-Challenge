@@ -1,0 +1,17 @@
+//go:build linux
+// +build linux
+
+package main
+
+//go:generate stringer -type=Color
+type Color int
+
+// docs kept
+const Red Color = 0
+
+func main() {
+	raw := `a // b /* c */`
+	r := '/'
+	_ = raw
+	_ = r
+}

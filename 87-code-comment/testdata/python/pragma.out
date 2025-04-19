@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+import os  # noqa
+x = 1  # type: int
+y = 2
+def f():  # noqa: E501
+    pass
