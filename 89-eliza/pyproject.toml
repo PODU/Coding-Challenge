@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eliza-doctor"
+version = "1.0.0"
+description = "A faithful, data-driven ELIZA (DOCTOR script) chatbot -- stdlib only."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #89" }]
+keywords = ["eliza", "doctor", "chatbot", "nlp", "rogerian"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Communications :: Chat",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "mypy", "ruff", "black"]
+
+[project.scripts]
+eliza = "eliza.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+eliza = ["data/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.mypy]
+strict = true
+files = ["src/eliza"]
