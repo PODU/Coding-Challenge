@@ -94,3 +94,4 @@ Each folder is a self-contained project with its own README.
 | 87 | [87-code-comment](87-code-comment/) | Go | Strips comments from source code in many languages. |
 | 88 | [88-top](88-top/) | Go | Live terminal view of running processes and resource use. |
 | 89 | [89-eliza](89-eliza/) | Python | The classic ELIZA chatbot driven by a pattern script. |
+| 90 | [90-smtp-server](90-smtp-server/) | Go | Mail server that accepts and stores email over SMTP. |
