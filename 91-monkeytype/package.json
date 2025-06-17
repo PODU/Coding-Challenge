@@ -1,0 +1,20 @@
+{
+  "name": "monkeytype-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coding Challenge #91 — a browser typing-speed test with a pure, clock-injected core.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
+  }
+}
