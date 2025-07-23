@@ -98,3 +98,4 @@ Each folder is a self-contained project with its own README.
 | 91 | [91-monkeytype](91-monkeytype/) | TypeScript | Typing speed test with WPM and accuracy stats. |
 | 92 | [92-loc-counter](92-loc-counter/) | Go | Counts code, comment and blank lines by language. |
 | 93 | [93-which](93-which/) | Go | Finds where executables live on the PATH. |
+| 94 | [94-dhcp-client](94-dhcp-client/) | Go | Requests an IP address lease from a DHCP server. |
