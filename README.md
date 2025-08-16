@@ -99,3 +99,4 @@ Each folder is a self-contained project with its own README.
 | 92 | [92-loc-counter](92-loc-counter/) | Go | Counts code, comment and blank lines by language. |
 | 93 | [93-which](93-which/) | Go | Finds where executables live on the PATH. |
 | 94 | [94-dhcp-client](94-dhcp-client/) | Go | Requests an IP address lease from a DHCP server. |
+| 95 | [95-forth-interpreter](95-forth-interpreter/) | Python | Interpreter for the Forth stack-based language. |

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forth-interpreter"
+version = "1.0.0"
+description = "A small, production-ready Forth interpreter with a REPL and script runner."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #95" }]
+keywords = ["forth", "interpreter", "repl", "rpn", "stack"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Forth",
+    "Topic :: Software Development :: Interpreters",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[project.scripts]
+forth = "forth_interpreter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
