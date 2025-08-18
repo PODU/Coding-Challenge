@@ -1,0 +1,15 @@
+Domain Name: example.com
+Registry Domain ID: 2336799_DOMAIN_COM-VRSN
+Registrar WHOIS Server: whois.exampleregistrar.com
+Registrar URL: http://www.exampleregistrar.com
+Updated Date: 2023-08-14T07:01:34Z
+Creation Date: 1995-08-14T04:00:00Z
+Registrar Registration Expiration Date: 2024-08-13T04:00:00Z
+Registrar: Example Registrar, LLC
+Registrant Organization: Internet Example Org
+Registrant State/Province: CA
+Registrant Country: US
+Admin Email: REDACTED FOR PRIVACY
+Name Server: a.iana-servers.net
+Name Server: b.iana-servers.net
+DNSSEC: signedDelegation

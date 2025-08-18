@@ -1,0 +1,23 @@
+#
+# ARIN WHOIS data and services are subject to the Terms of Use
+# available at: https://www.arin.net/resources/registry/whois/tou/
+#
+
+NetRange:       149.72.0.0 - 149.72.255.255
+CIDR:           149.72.0.0/16
+NetName:        SENDGRID
+NetHandle:      NET-149-72-0-0-1
+Parent:         NET149 (NET-149-0-0-0-0)
+NetType:        Direct Allocation
+OriginAS:       AS11377
+Organization:   Twilio SendGrid (SENDG)
+RegDate:        2017-03-09
+Updated:        2021-09-23
+Ref:            https://rdap.arin.net/registry/ip/149.72.0.0
+
+OrgName:        Twilio SendGrid
+OrgId:          SENDG
+Address:        1801 California Street
+City:           Denver
+StateProv:      CO
+Country:        US

@@ -1,0 +1,23 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.verisign-grs.com
+
+domain:       COM
+
+organisation: VeriSign Global Registry Services
+address:      12061 Bluemont Way
+address:      Reston Virginia 20190
+address:      United States of America (the)
+
+contact:      administrative
+name:         Registry Customer Service
+
+whois:        whois.verisign-grs.com
+status:       ACTIVE
+remarks:      Commercial
+
+created:      1985-01-01
+changed:      2023-12-07
+source:       IANA
