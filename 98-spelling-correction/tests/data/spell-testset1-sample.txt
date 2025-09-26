@@ -1,0 +1,29 @@
+access: acess
+accommodation: accomodation acommodation acomodation
+account: acount
+address: adress adres
+arranged: aranged arrainged
+because: becuase
+benefit: benifit
+between: beetween
+career: carrer
+decided: deside
+definitely: definately defiantly
+embarrass: embaras embarass
+existence: existance existene
+finally: finaly finaly
+friend: freind frend
+government: goverment
+immediately: imediately
+necessary: neccesary necesary
+poison: posion
+possible: possable
+professional: proffesional profesional
+receive: recieve
+separate: seperate
+successful: succesful
+their: thier
+truly: truely
+until: untill
+which: wich
+woman: women

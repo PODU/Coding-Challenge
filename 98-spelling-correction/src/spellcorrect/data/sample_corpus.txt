@@ -1,0 +1,25 @@
+The quick brown fox jumps over the lazy dog.
+The quick brown fox is known for being quick and brown.
+A correct spelling matters; correct spelling is the goal of this tool.
+Spelling correction finds the correct spelling of a misspelled word.
+To spell a word correctly you compare it against known correct spellings.
+The spelling corrector ranks candidates by how often each word appears.
+A correct word is left unchanged, while a misspelled word is corrected.
+Good spelling and correct grammar make writing clear and correct.
+The dictionary holds every known word and its frequency count.
+Edit distance measures how many edits separate two words.
+A single edit can delete, insert, transpose, or replace one letter.
+Two edits combine two such operations to reach a more distant word.
+The most frequent known candidate wins as the best correction.
+This corpus teaches the corrector which words are correct and common.
+The fox and the dog and the cat all live near the quick brown river.
+A word that is already correct needs no correction at all.
+Spelling, spelling, spelling: practice makes correct spelling easier.
+Correct, correct, correct: the corrector prefers the correct answer.
+The the the and a a a of of to to in in is is it it that that this this.
+People often misspell words, so a good corrector suggests the right word.
+The quick brown fox quickly corrects every misspelled and incorrect word.
+We test the corrector on words like spelling, correction, and correct.
+A known word found in the dictionary is reported as correctly spelled.
+The corrector reads a corpus, counts words, and builds a frequency table.
+Letters, words, and sentences form the text the corrector learns from.

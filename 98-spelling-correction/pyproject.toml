@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spellcorrect"
+version = "1.0.0"
+description = "A Norvig-style spelling corrector: word-frequency model with edit-distance candidate generation."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #98" }]
+keywords = ["spelling", "correction", "norvig", "edit-distance", "nlp"]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+spellcorrect = "spellcorrect.cli:main"
+
+[project.urls]
+Homepage = "https://codingchallenges.substack.com/p/coding-challenge-98-spelling-correction"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+spellcorrect = ["data/*.txt"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-q"
+testpaths = ["tests"]
+markers = [
+    "acceptance: Norvig test-set accuracy checks (may be slow / need big.txt).",
+]

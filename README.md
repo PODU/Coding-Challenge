@@ -102,3 +102,4 @@ Each folder is a self-contained project with its own README.
 | 95 | [95-forth-interpreter](95-forth-interpreter/) | Python | Interpreter for the Forth stack-based language. |
 | 96 | [96-whois](96-whois/) | Go | Looks up domain registration details, following referrals. |
 | 97 | [97-bitcask](97-bitcask/) | Go | Log-structured key-value store with merging and hint files. |
+| 98 | [98-spelling-correction](98-spelling-correction/) | Python | Suggests corrections for misspelled words. |
