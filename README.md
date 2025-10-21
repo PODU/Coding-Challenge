@@ -104,3 +104,4 @@ Each folder is a self-contained project with its own README.
 | 97 | [97-bitcask](97-bitcask/) | Go | Log-structured key-value store with merging and hint files. |
 | 98 | [98-spelling-correction](98-spelling-correction/) | Python | Suggests corrections for misspelled words. |
 | 99 | [99-language-server](99-language-server/) | Go | LSP server offering diagnostics, completion and hover. |
+| 100 | [100-bittorrent-client](100-bittorrent-client/) | Go | Downloads single-file torrents from peers via an HTTP tracker. |
