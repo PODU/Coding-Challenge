@@ -106,3 +106,4 @@ Each folder is a self-contained project with its own README.
 | 99 | [99-language-server](99-language-server/) | Go | LSP server offering diagnostics, completion and hover. |
 | 100 | [100-bittorrent-client](100-bittorrent-client/) | Go | Downloads single-file torrents from peers via an HTTP tracker. |
 | 101 | [101-echo-server](101-echo-server/) | Go | Server that echoes back whatever clients send, over TCP and UDP. |
+| 102 | [102-llm-powered](102-llm-powered/) | Python | Terminal chatbot on Claude with streaming replies and memory. |
