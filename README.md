@@ -107,3 +107,4 @@ Each folder is a self-contained project with its own README.
 | 100 | [100-bittorrent-client](100-bittorrent-client/) | Go | Downloads single-file torrents from peers via an HTTP tracker. |
 | 101 | [101-echo-server](101-echo-server/) | Go | Server that echoes back whatever clients send, over TCP and UDP. |
 | 102 | [102-llm-powered](102-llm-powered/) | Python | Terminal chatbot on Claude with streaming replies and memory. |
+| 103 | [103-software-teleprompter](103-software-teleprompter/) | TypeScript | Scrolling teleprompter with speed and mirror controls. |
