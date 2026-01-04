@@ -108,3 +108,4 @@ Each folder is a self-contained project with its own README.
 | 101 | [101-echo-server](101-echo-server/) | Go | Server that echoes back whatever clients send, over TCP and UDP. |
 | 102 | [102-llm-powered](102-llm-powered/) | Python | Terminal chatbot on Claude with streaming replies and memory. |
 | 103 | [103-software-teleprompter](103-software-teleprompter/) | TypeScript | Scrolling teleprompter with speed and mirror controls. |
+| 104 | [104-mcp-server](104-mcp-server/) | Go | Model Context Protocol server exposing tools to AI agents. |
