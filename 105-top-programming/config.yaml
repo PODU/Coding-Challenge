@@ -1,0 +1,16 @@
+# Example configuration for the api/producer binaries.
+# Env overrides: KAFKA_BROKERS, KAFKA_TOPIC, POLL_INTERVAL.
+brokers:
+  - "localhost:9092"
+topic: "hn-stories"
+poll_interval: "60s"
+categories:
+  - top
+  - best
+  - show
+# Consumer-side filtering: restrict this instance to a slice of the stream.
+filter:
+  types:
+    - story
+  keywords: []
+  min_score: 0

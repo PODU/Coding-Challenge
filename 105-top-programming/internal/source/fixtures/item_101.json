@@ -1,0 +1,9 @@
+{
+  "id": 101,
+  "type": "story",
+  "by": "alice",
+  "time": 1700000000,
+  "title": "A fast new Go web framework",
+  "url": "https://example.com/go-framework",
+  "score": 250
+}

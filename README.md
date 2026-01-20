@@ -109,3 +109,4 @@ Each folder is a self-contained project with its own README.
 | 102 | [102-llm-powered](102-llm-powered/) | Python | Terminal chatbot on Claude with streaming replies and memory. |
 | 103 | [103-software-teleprompter](103-software-teleprompter/) | TypeScript | Scrolling teleprompter with speed and mirror controls. |
 | 104 | [104-mcp-server](104-mcp-server/) | Go | Model Context Protocol server exposing tools to AI agents. |
+| 105 | [105-top-programming](105-top-programming/) | Go | Aggregates the top programming stories from Hacker News into one feed. |

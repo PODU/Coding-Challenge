@@ -1,0 +1,16 @@
+brokers:
+  - "localhost:9092"
+topic: "hn-stories"
+poll_interval: "60s"
+categories:
+  - top
+  - best
+  - show
+filter:
+  types:
+    - story
+  keywords:
+    - go
+    - rust
+    - ai
+  min_score: 50
