@@ -1,0 +1,5 @@
+{
+  "properties": { "a": { "type": "integer" } },
+  "patternProperties": { "^x_": { "type": "string" } },
+  "additionalProperties": false
+}

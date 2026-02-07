@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "if": {
+    "properties": { "kind": { "const": "card" } },
+    "required": ["kind"]
+  },
+  "then": { "required": ["cardNumber"] },
+  "else": { "required": ["accountId"] }
+}

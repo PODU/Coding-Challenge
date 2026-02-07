@@ -1,0 +1,12 @@
+{
+  "definitions": {
+    "node": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "integer" },
+        "next": { "$ref": "#/definitions/node" }
+      }
+    }
+  },
+  "$ref": "#/definitions/node"
+}
