@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Record · Loom Clone</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1><a href="/">Loom Clone</a></h1>
+      <a class="btn" href="/">Home</a>
+    </header>
+    <main class="recorder">
+      <div class="preview-wrap">
+        <video id="preview" autoplay playsinline muted></video>
+      </div>
+
+      <div class="controls">
+        <label class="row">
+          <input type="checkbox" id="enableScreen" checked />
+          Record screen
+        </label>
+        <label class="row">
+          <input type="checkbox" id="enableCamera" checked />
+          Camera
+          <select id="camera"></select>
+        </label>
+        <label class="row">
+          <input type="checkbox" id="enableMic" checked />
+          Microphone
+          <select id="mic"></select>
+        </label>
+
+        <label class="row">
+          Title
+          <input type="text" id="title" placeholder="Optional title" />
+        </label>
+
+        <div class="row buttons">
+          <button id="start" class="btn primary">Start recording</button>
+          <button id="stop" class="btn danger">Stop</button>
+        </div>
+
+        <div id="status" class="status"></div>
+        <div id="result" class="result"></div>
+      </div>
+    </main>
+    <script type="module" src="/src/recorder.ts"></script>
+  </body>
+</html>
