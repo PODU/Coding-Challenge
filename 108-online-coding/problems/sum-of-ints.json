@@ -1,0 +1,17 @@
+{
+  "id": "sum-of-ints",
+  "title": "Sum of Integers",
+  "statementMarkdown": "# Sum of Integers\n\nRead a single line from standard input containing space-separated integers.\nPrint their sum to standard output.\n\n**Example**\n\nInput:\n```\n1 2 3 4\n```\nOutput:\n```\n10\n```",
+  "languages": ["python", "javascript"],
+  "starterCode": {
+    "python": "import sys\n\nnums = sys.stdin.read().split()\n# TODO: print the sum of the integers\n",
+    "javascript": "const data = require('fs').readFileSync(0, 'utf8');\n// TODO: print the sum of the integers\n"
+  },
+  "testCases": [
+    { "name": "example", "stdin": "1 2 3 4\n", "expectedStdout": "10\n", "hidden": false },
+    { "name": "single", "stdin": "42\n", "expectedStdout": "42\n", "hidden": false },
+    { "name": "negatives", "stdin": "-5 5 -10 10\n", "expectedStdout": "0\n", "hidden": true },
+    { "name": "large", "stdin": "1000000 2000000 3000000\n", "expectedStdout": "6000000\n", "hidden": true },
+    { "name": "empty", "stdin": "\n", "expectedStdout": "0\n", "hidden": true }
+  ]
+}

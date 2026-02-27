@@ -1,0 +1,16 @@
+{
+  "id": "reverse-string",
+  "title": "Reverse a String",
+  "statementMarkdown": "# Reverse a String\n\nRead a single line from standard input and print it reversed.\n\n**Example**\n\nInput:\n```\nhello\n```\nOutput:\n```\nolleh\n```",
+  "languages": ["python", "javascript"],
+  "starterCode": {
+    "python": "import sys\n\ns = sys.stdin.readline().rstrip('\\n')\n# TODO: print s reversed\n",
+    "javascript": "const s = require('fs').readFileSync(0, 'utf8').split('\\n')[0];\n// TODO: print s reversed\n"
+  },
+  "testCases": [
+    { "name": "example", "stdin": "hello\n", "expectedStdout": "olleh\n", "hidden": false },
+    { "name": "palindrome", "stdin": "racecar\n", "expectedStdout": "racecar\n", "hidden": false },
+    { "name": "with-spaces", "stdin": "ab cd\n", "expectedStdout": "dc ba\n", "hidden": true },
+    { "name": "single-char", "stdin": "z\n", "expectedStdout": "z\n", "hidden": true }
+  ]
+}

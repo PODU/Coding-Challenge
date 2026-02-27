@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Coding Platform</title>
+    <!-- CSP: only our scripts + the pinned CDN for the editor. -->
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- CodeMirror 5 (script-tag friendly; graceful textarea fallback if it fails to load). -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Online Coding Platform</h1>
+      <span class="subtitle">Coding Challenge #108 — sandboxed code runner</span>
+    </header>
+
+    <div id="banner" class="banner hidden" role="alert"></div>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <h2>Mode</h2>
+          <label>
+            <select id="problemSelect">
+              <option value="">Free-form playground</option>
+            </select>
+          </label>
+          <div id="statement" class="statement"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Snippets</h2>
+          <div class="snippet-controls">
+            <input id="snippetName" type="text" placeholder="snippet name" />
+            <button id="saveSnippet" type="button">Save</button>
+          </div>
+          <ul id="snippetList" class="snippet-list"></ul>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <div class="toolbar">
+          <select id="languageSelect" aria-label="Language"></select>
+          <button id="runBtn" type="button" class="primary">Run</button>
+          <button id="submitBtn" type="button" class="hidden">Submit</button>
+          <span id="spinner" class="spinner hidden" aria-live="polite">Running…</span>
+        </div>
+
+        <div class="editor-wrap">
+          <textarea id="editor" spellcheck="false">print("Hello, world!")
+</textarea>
+        </div>
+
+        <details class="stdin-box">
+          <summary>Standard input (stdin)</summary>
+          <textarea id="stdin" spellcheck="false" placeholder="fed to your program's stdin"></textarea>
+        </details>
+
+        <div class="output-panel">
+          <div class="output-header">
+            <span>Output</span>
+            <span id="statusPill" class="pill"></span>
+          </div>
+          <pre id="output" class="output" aria-live="polite"></pre>
+          <div id="cases" class="cases"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- CodeMirror core + modes (pinned versions). -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
