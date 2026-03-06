@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-ui/
+*.log
+.DS_Store
+
+# Build artifacts only — the fixtures under test/fixtures/ ARE committed and are
+# regenerated deterministically by `npm run fixtures` (scripts/build-fixture.ts).

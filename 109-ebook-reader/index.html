@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPUB Reader — Coding Challenge #109</title>
+    <link rel="stylesheet" href="/src/ui/style.css" />
+  </head>
+  <body>
+    <div id="app" class="app" data-theme="light">
+      <header class="topbar" role="banner">
+        <button id="toc-toggle" class="icon-btn" aria-label="Toggle table of contents" aria-expanded="false">☰</button>
+        <div class="book-id">
+          <span id="book-title" class="book-title">EPUB Reader</span>
+          <span id="book-author" class="book-author"></span>
+        </div>
+        <div class="spacer"></div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">◐</button>
+        <label class="file-btn">
+          Open EPUB
+          <input id="file-input" type="file" accept=".epub,application/epub+zip" hidden />
+        </label>
+        <button id="sample-btn" class="text-btn">Load sample</button>
+      </header>
+
+      <div class="body">
+        <nav id="toc-panel" class="toc-panel" aria-label="Table of contents" hidden>
+          <h2>Contents</h2>
+          <ul id="toc-list" class="toc-list"></ul>
+        </nav>
+
+        <main class="reader" role="main" aria-label="Reading area">
+          <div id="viewport" class="viewport" tabindex="0">
+            <div id="content" class="content" aria-live="polite"></div>
+          </div>
+          <p id="placeholder" class="placeholder">
+            Open an EPUB file, or click <strong>Load sample</strong> to begin.
+          </p>
+        </main>
+      </div>
+
+      <footer class="bottombar" role="contentinfo">
+        <button id="prev-btn" class="nav-btn" aria-label="Previous page">‹ Prev</button>
+        <div class="progress-wrap" aria-hidden="false">
+          <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+          <span id="progress-label" class="progress-label">—</span>
+        </div>
+        <button id="bookmark-btn" class="text-btn" aria-label="Toggle bookmark">☆ Bookmark</button>
+        <button id="next-btn" class="nav-btn" aria-label="Next page">Next ›</button>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/ui/main.ts"></script>
+  </body>
+</html>

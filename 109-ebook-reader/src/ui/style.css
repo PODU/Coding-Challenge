@@ -1,0 +1,210 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --panel: #f4f4f5;
+  --border: #e0e0e0;
+  --accent: #2563eb;
+  --user-font-family: Georgia, "Times New Roman", serif;
+  --user-font-size: 19px;
+  --user-line-height: 1.65;
+}
+
+[data-theme='dark'] {
+  --bg: #16181d;
+  --fg: #e6e6e6;
+  --muted: #9aa0a6;
+  --panel: #1f2228;
+  --border: #2c2f36;
+  --accent: #5b8cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.topbar,
+.bottombar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.bottombar {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.spacer {
+  flex: 1;
+}
+.book-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.book-title {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40vw;
+}
+.book-author {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+button,
+.file-btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+}
+.icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.5rem;
+}
+.text-btn:hover,
+.nav-btn:hover,
+.file-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.toc-panel {
+  width: 280px;
+  overflow: auto;
+  padding: 1rem;
+  border-right: 1px solid var(--border);
+  background: var(--panel);
+}
+.toc-panel h2 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.toc-list,
+.toc-list ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0.75rem;
+}
+.toc-list a {
+  display: block;
+  padding: 0.25rem 0.3rem;
+  color: var(--fg);
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.toc-list a:hover,
+.toc-list a:focus {
+  background: var(--bg);
+  color: var(--accent);
+}
+.toc-list a[aria-current='true'] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.reader {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.viewport {
+  flex: 1;
+  max-width: 42rem;
+  overflow: hidden;
+  outline: none;
+}
+
+.content {
+  height: 100%;
+  column-fill: auto;
+  column-gap: 3rem;
+  color: var(--fg);
+  font-family: var(--user-font-family);
+  font-size: var(--user-font-size);
+  line-height: var(--user-line-height);
+  transition: transform 0.18s ease;
+}
+.content :where(img, svg) {
+  max-width: 100%;
+  height: auto;
+}
+.content a {
+  color: var(--accent);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.progress-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
