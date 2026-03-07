@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rtfm"
+version = "0.1.0"
+description = "RTFM For Me Agent - a RAG documentation assistant grounded on Anthropic Claude (Coding Challenge #110)."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #110" }]
+dependencies = [
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+# Real LLM backend (Anthropic Claude). Tests do NOT require this.
+anthropic = ["anthropic>=0.40"]
+# Real Redis Stack vector store / cache / memory backend. Tests do NOT require this.
+redis = ["redis>=5"]
+# Thin REST API.
+api = ["fastapi>=0.110", "uvicorn>=0.27"]
+# Local, offline embedding model (optional). Tests use the deterministic HashEmbedder.
+local-embed = ["fastembed>=0.3"]
+# Test + dev tooling.
+dev = ["pytest>=8", "pytest-cov>=5"]
+
+[project.scripts]
+rtfm = "rtfm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = [
+    "integration: tests that require a live Redis Stack and/or a real Anthropic API key (excluded by default).",
+]

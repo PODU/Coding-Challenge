@@ -114,3 +114,4 @@ Each folder is a self-contained project with its own README.
 | 107 | [107-loom-clone](107-loom-clone/) | TypeScript | Records the screen and camera and shares the video. |
 | 108 | [108-online-coding](108-online-coding/) | TypeScript | Browser code editor that runs Python and JavaScript in a sandbox. |
 | 109 | [109-ebook-reader](109-ebook-reader/) | TypeScript | EPUB reader built on a headless EPUB parser. |
+| 110 | [110-rtfm-for-me](110-rtfm-for-me/) | Python | AI agent that answers questions from man pages and docs. |
