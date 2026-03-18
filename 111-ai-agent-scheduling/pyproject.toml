@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-agent-scheduling"
+version = "1.0.0"
+description = "Coding Challenge #111 — AI Agent Scheduling: run AI tasks on a cron schedule and deliver results by email."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenges #111" }]
+keywords = ["ai", "agent", "scheduler", "cron", "anthropic", "claude"]
+
+# Only the real Anthropic LLM client needs the SDK. It is imported lazily, so the
+# offline test-suite (which injects mocks) runs without it. It is still declared
+# here so a normal install ships a working production client.
+dependencies = [
+    "anthropic>=0.40",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+ai-agents = "ai_agent_scheduling.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

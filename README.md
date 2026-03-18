@@ -115,3 +115,4 @@ Each folder is a self-contained project with its own README.
 | 108 | [108-online-coding](108-online-coding/) | TypeScript | Browser code editor that runs Python and JavaScript in a sandbox. |
 | 109 | [109-ebook-reader](109-ebook-reader/) | TypeScript | EPUB reader built on a headless EPUB parser. |
 | 110 | [110-rtfm-for-me](110-rtfm-for-me/) | Python | AI agent that answers questions from man pages and docs. |
+| 111 | [111-ai-agent-scheduling](111-ai-agent-scheduling/) | Python | Runs AI agent tasks on a cron schedule and emails the results. |
