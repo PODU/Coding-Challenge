@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aidetector"
+version = "1.0.0"
+description = "Rule-based + statistical AI-writing detector (Coding Challenge #113)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenges" }]
+keywords = ["ai-detection", "nlp", "text-analysis", "llm"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# The optional Anthropic judge is the ONLY thing that can touch the network.
+# It is never imported or constructed in the default/offline path.
+anthropic = ["anthropic>=0.40"]
+dev = ["pytest>=7", "mypy>=1.5", "ruff>=0.1"]
+
+[project.scripts]
+aidetector = "aidetector.cli:main"
+
+[project.urls]
+Homepage = "https://codingchallenges.substack.com/p/coding-challenge-113-ai-writing-detector"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
