@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "code-sherpa"
+version = "0.1.0"
+description = "Code Sherpa — natural-language codebase Q&A via hybrid retrieval + LLM explanations."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Code Sherpa" }]
+keywords = ["rag", "code-search", "embeddings", "llm", "anthropic"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+# Core engine has ZERO hard runtime deps beyond the stdlib so the offline
+# pipeline and test suite run with nothing installed. numpy accelerates the
+# in-memory vector store when present (pure-python fallback otherwise).
+dependencies = []
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.24"]
+anthropic = ["anthropic>=0.40"]
+all = ["numpy>=1.24", "anthropic>=0.40"]
+dev = ["pytest>=7", "numpy>=1.24"]
+
+[project.scripts]
+sherpa = "code_sherpa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.package-data]
+code_sherpa = ["py.typed"]

@@ -119,3 +119,4 @@ Each folder is a self-contained project with its own README.
 | 112 | [112-ai-coding-agent](112-ai-coding-agent/) | Python | Agent that reads, edits and runs code to finish tasks. |
 | 113 | [113-ai-writing-detector](113-ai-writing-detector/) | Python | Estimates whether a piece of text was written by AI. |
 | 114 | [114-gzip](114-gzip/) | Go | Compresses and decompresses files in the gzip format. |
+| 115 | [115-code-sherpa](115-code-sherpa/) | Python | Indexes a repository and answers questions about the code. |
