@@ -120,3 +120,4 @@ Each folder is a self-contained project with its own README.
 | 113 | [113-ai-writing-detector](113-ai-writing-detector/) | Python | Estimates whether a piece of text was written by AI. |
 | 114 | [114-gzip](114-gzip/) | Go | Compresses and decompresses files in the gzip format. |
 | 115 | [115-code-sherpa](115-code-sherpa/) | Python | Indexes a repository and answers questions about the code. |
+| 116 | [116-awk](116-awk/) | Go | Pattern-scanning and text-processing language. |
