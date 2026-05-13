@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pong-ai"
+version = "0.1.0"
+description = "REINFORCE policy-gradient agent that learns Atari Pong from pixels (Coding Challenge #119)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #119" }]
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# The pure NumPy core (preprocessing, returns, policy, REINFORCE update) needs
+# nothing beyond `numpy`. The Atari environment + rendering need these, which
+# require an Atari ROM and are NOT exercised in CI.
+atari = [
+    "gymnasium[atari]>=0.29",
+    "ale-py>=0.8",
+    "imageio>=2.31",
+    "imageio-ffmpeg>=0.4",
+    "matplotlib>=3.7",
+]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+pong-ai-train = "pong_ai.train:main"
+pong-ai-eval = "pong_ai.evaluate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: integration tests that require gymnasium + ale-py + an Atari ROM (skipped by default / when deps absent)",
+]

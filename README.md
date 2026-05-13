@@ -123,3 +123,4 @@ Each folder is a self-contained project with its own README.
 | 116 | [116-awk](116-awk/) | Go | Pattern-scanning and text-processing language. |
 | 117 | [117-ai-powered-support](117-ai-powered-support/) | Python | Customer support bot that answers from a knowledge base. |
 | 118 | [118-comm](118-comm/) | Go | Compares two sorted files line by line. |
+| 119 | [119-ai-pong-player](119-ai-pong-player/) | Python | Learns to play Atari Pong from screen pixels with policy-gradient RL. |

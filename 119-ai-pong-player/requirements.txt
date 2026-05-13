@@ -1,0 +1,13 @@
+# Pure core (tested in CI, fully offline):
+numpy>=1.24
+
+# Atari training / rendering stack (NOT used by the test-suite; requires an
+# Atari ROM download). Install with:  pip install -e .[atari]
+gymnasium[atari]>=0.29
+ale-py>=0.8
+imageio>=2.31
+imageio-ffmpeg>=0.4
+matplotlib>=3.7
+
+# Test runner:
+pytest>=7.0
