@@ -125,3 +125,4 @@ Each folder is a self-contained project with its own README.
 | 118 | [118-comm](118-comm/) | Go | Compares two sorted files line by line. |
 | 119 | [119-ai-pong-player](119-ai-pong-player/) | Python | Learns to play Atari Pong from screen pixels with policy-gradient RL. |
 | 120 | [120-md5sum](120-md5sum/) | Go | Computes and checks MD5 checksums. |
+| 121 | [121-dd](121-dd/) | Go | Copies and converts data in blocks. |
