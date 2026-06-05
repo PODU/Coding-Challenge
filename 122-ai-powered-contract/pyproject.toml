@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "contract-review"
+version = "0.1.0"
+description = "AI-powered contract review agent: ingest, chunk, extract clauses, analyse risk, human-in-the-loop review, grounded Q&A. Coding Challenge #122."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #122" }]
+keywords = ["contract", "llm", "anthropic", "claude", "risk", "review"]
+
+dependencies = [
+    "pydantic>=2.5",
+    "anthropic>=0.40",
+]
+
+[project.optional-dependencies]
+pdf = ["pypdf>=4.0"]
+test = ["pytest>=7.4"]
+dev = ["pytest>=7.4", "pypdf>=4.0"]
+
+[project.scripts]
+contract-review = "contract_review.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["contract_review*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]

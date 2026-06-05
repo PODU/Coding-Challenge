@@ -126,3 +126,4 @@ Each folder is a self-contained project with its own README.
 | 119 | [119-ai-pong-player](119-ai-pong-player/) | Python | Learns to play Atari Pong from screen pixels with policy-gradient RL. |
 | 120 | [120-md5sum](120-md5sum/) | Go | Computes and checks MD5 checksums. |
 | 121 | [121-dd](121-dd/) | Go | Copies and converts data in blocks. |
+| 122 | [122-ai-powered-contract](122-ai-powered-contract/) | Python | Agent that reviews contracts and flags risky clauses. |
