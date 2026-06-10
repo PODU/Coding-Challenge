@@ -1,0 +1,1 @@
+Deep Learning relies on neural networks. Geoffrey Hinton and Yann LeCun advanced Deep Learning. Deep Learning powers modern computer vision.

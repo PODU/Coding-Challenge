@@ -1,0 +1,1 @@
+The Perceptron was an early neural model. Frank Rosenblatt built the Perceptron. Marvin Minsky analyzed the Perceptron limitations.

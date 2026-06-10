@@ -1,0 +1,1 @@
+Information Retrieval is a foundational topic in computer science. Information Retrieval appears throughout the study of algorithms and systems. Understanding Information Retrieval is essential for engineers.

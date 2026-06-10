@@ -1,0 +1,5 @@
+# Base runtime + offline test gate. Everything else (anthropic, ollama,
+# oracle, web) is an opt-in extra in pyproject.toml and is never required to
+# run the hermetic test suite.
+numpy>=1.24
+pytest>=7.4

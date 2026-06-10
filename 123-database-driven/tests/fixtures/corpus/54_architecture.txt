@@ -1,0 +1,1 @@
+Computer Architecture is a foundational topic in computer science. Computer Architecture appears throughout the study of algorithms and systems. Understanding Computer Architecture is essential for engineers.

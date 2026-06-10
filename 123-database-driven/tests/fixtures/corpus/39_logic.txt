@@ -1,0 +1,1 @@
+Boolean Logic is a foundational topic in computer science. Boolean Logic appears throughout the study of algorithms and systems. Understanding Boolean Logic is essential for engineers.

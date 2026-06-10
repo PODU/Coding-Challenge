@@ -1,0 +1,1 @@
+Floating Point is a foundational topic in computer science. Floating Point appears throughout the study of algorithms and systems. Understanding Floating Point is essential for engineers.

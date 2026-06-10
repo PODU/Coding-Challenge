@@ -1,0 +1,1 @@
+Type Systems is a foundational topic in computer science. Type Systems appears throughout the study of algorithms and systems. Understanding Type Systems is essential for engineers.

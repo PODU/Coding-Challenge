@@ -1,0 +1,1 @@
+Hash Tables is a foundational topic in computer science. Hash Tables appears throughout the study of algorithms and systems. Understanding Hash Tables is essential for engineers.

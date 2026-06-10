@@ -1,0 +1,1 @@
+Computer Vision is a foundational topic in computer science. Computer Vision appears throughout the study of algorithms and systems. Understanding Computer Vision is essential for engineers.

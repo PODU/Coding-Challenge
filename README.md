@@ -127,3 +127,4 @@ Each folder is a self-contained project with its own README.
 | 120 | [120-md5sum](120-md5sum/) | Go | Computes and checks MD5 checksums. |
 | 121 | [121-dd](121-dd/) | Go | Copies and converts data in blocks. |
 | 122 | [122-ai-powered-contract](122-ai-powered-contract/) | Python | Agent that reviews contracts and flags risky clauses. |
+| 123 | [123-database-driven](123-database-driven/) | Python | Wiki that an LLM writes and keeps current in a database. |

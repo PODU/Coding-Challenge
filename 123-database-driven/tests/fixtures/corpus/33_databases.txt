@@ -1,0 +1,1 @@
+Databases is a foundational topic in computer science. Databases appears throughout the study of algorithms and systems. Understanding Databases is essential for engineers.

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llmwiki"
+version = "0.1.0"
+description = "Database-Driven LLM Wiki — an agent-maintained, interlinked Markdown knowledge base with hybrid search (Coding Challenge #123)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Coding Challenge #123" }]
+keywords = ["wiki", "rag", "knowledge-base", "embeddings", "hybrid-search", "llm"]
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# Production seams — never required for the offline test gate.
+anthropic = ["anthropic>=0.40"]
+ollama = ["httpx>=0.27"]
+oracle = ["oracledb>=2.0"]
+web = ["fastapi>=0.110", "uvicorn>=0.29"]
+yaml = ["PyYAML>=6.0"]
+test = ["pytest>=7.4"]
+
+[project.scripts]
+wiki = "llmwiki.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:randomly"
+pythonpath = ["src", "."]

@@ -1,0 +1,1 @@
+Concurrency is a foundational topic in computer science. Concurrency appears throughout the study of algorithms and systems. Understanding Concurrency is essential for engineers.

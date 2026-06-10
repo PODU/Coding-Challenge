@@ -1,0 +1,1 @@
+Cache Coherence is a foundational topic in computer science. Cache Coherence appears throughout the study of algorithms and systems. Understanding Cache Coherence is essential for engineers.

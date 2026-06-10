@@ -1,0 +1,1 @@
+The Transformer is a neural architecture. Google Research introduced the Transformer. The Transformer uses an attention mechanism.

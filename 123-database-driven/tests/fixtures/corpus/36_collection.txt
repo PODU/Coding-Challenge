@@ -1,0 +1,1 @@
+Garbage Collection is a foundational topic in computer science. Garbage Collection appears throughout the study of algorithms and systems. Understanding Garbage Collection is essential for engineers.

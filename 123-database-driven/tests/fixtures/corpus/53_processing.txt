@@ -1,0 +1,1 @@
+Natural Language Processing is a foundational topic in computer science. Natural Language Processing appears throughout the study of algorithms and systems. Understanding Natural Language Processing is essential for engineers.
