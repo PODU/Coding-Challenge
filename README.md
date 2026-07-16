@@ -130,3 +130,4 @@ Each folder is a self-contained project with its own README.
 | 123 | [123-database-driven](123-database-driven/) | Python | Wiki that an LLM writes and keeps current in a database. |
 | 124 | [124-du](124-du/) | Go | Reports disk usage of files and directories. |
 | 125 | [125-online-diff](125-online-diff/) | TypeScript | Web app that shows side-by-side diffs of two texts. |
+| 126 | [126-background-removal](126-background-removal/) | Python | Removes the background from images. |

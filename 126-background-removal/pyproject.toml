@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccbgremove"
+version = "1.0.0"
+description = "Local automatic background removal for photos (Coding Challenge #126)."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "ccbgremove" }]
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26",
+    "pillow>=10",
+    "opencv-python-headless>=4.9",
+]
+
+[project.optional-dependencies]
+# Optional high-quality neural backend (U^2-Net). When installed it is
+# auto-selected and gives better hair edges via alpha matting.
+neural = ["rembg>=2.0", "onnxruntime>=1.17"]
+test = ["pytest>=8"]
+
+[project.scripts]
+ccbgremove = "ccbgremove.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
