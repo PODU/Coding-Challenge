@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Interview Coach</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Mock Interview Coach</h1>
+    <nav>
+      <button id="nav-new" class="navbtn active">New Interview</button>
+      <button id="nav-history" class="navbtn">History &amp; Progress</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Setup view -->
+    <section id="view-setup">
+      <h2>Set up your interview</h2>
+      <div id="mode-banner" class="banner hidden"></div>
+      <form id="setup-form">
+        <label>Target role
+          <input type="text" id="role" value="Software Engineer" maxlength="100">
+        </label>
+        <label>Seniority
+          <select id="seniority">
+            <option>junior</option>
+            <option selected>mid-level</option>
+            <option>senior</option>
+            <option>staff</option>
+            <option>manager</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Competencies to practice</legend>
+          <div id="competencies" class="checks"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Interviewer style</legend>
+          <div id="styles" class="checks"></div>
+        </fieldset>
+        <label>Number of questions
+          <select id="num-questions">
+            <option>2</option><option selected>3</option><option>4</option><option>5</option>
+          </select>
+        </label>
+        <button type="submit" class="primary">Start Interview</button>
+      </form>
+    </section>
+
+    <!-- Interview view -->
+    <section id="view-interview" class="hidden">
+      <div class="interview-grid">
+        <div class="video-pane">
+          <video id="interviewer-video" autoplay playsinline></video>
+          <div id="text-chat" class="hidden">
+            <div id="chat-log"></div>
+            <form id="chat-form">
+              <input type="text" id="chat-input" placeholder="Type your answer..." autocomplete="off">
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+        <aside class="side-pane">
+          <div id="timer" class="timer">--:--</div>
+          <div class="controls">
+            <button id="btn-skip">Skip question</button>
+            <button id="btn-end" class="danger">End interview</button>
+          </div>
+          <h3>Live transcript</h3>
+          <div id="transcript-log"></div>
+        </aside>
+      </div>
+      <div id="interview-status" class="banner hidden"></div>
+    </section>
+
+    <!-- Report view -->
+    <section id="view-report" class="hidden">
+      <h2>Feedback report</h2>
+      <div id="report-body"></div>
+      <button id="btn-again" class="primary">Practice again</button>
+    </section>
+
+    <!-- History view -->
+    <section id="view-history" class="hidden">
+      <h2>Progress</h2>
+      <div id="progress-chart"></div>
+      <h2>Past sessions</h2>
+      <div id="history-list"></div>
+      <div id="history-detail"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>
