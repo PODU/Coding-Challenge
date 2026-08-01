@@ -1,0 +1,15 @@
+title: "Coding Challenge #3: Build Your Own Compression Tool"
+difficulty: advanced
+topics:
+  - compression
+  - trees
+  - binary-io
+summary: |
+  Build a compression tool using Huffman coding: frequency analysis, tree
+  construction, prefix-code table, and a binary encoder/decoder.
+steps:
+  - "Count character frequencies in the input."
+  - "Build the Huffman tree from the frequency table."
+  - "Derive the prefix-code table from the tree."
+  - "Write a header plus the encoded body to the output file."
+  - "Decode: rebuild the tree from the header and decompress."

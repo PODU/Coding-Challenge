@@ -133,3 +133,4 @@ Each folder is a self-contained project with its own README.
 | 126 | [126-background-removal](126-background-removal/) | Python | Removes the background from images. |
 | 127 | [127-tmux](127-tmux/) | Go | Terminal multiplexer with sessions, windows and panes. |
 | 128 | [128-mock-interview](128-mock-interview/) | Python | Practice behavioural interviews with a live AI video interviewer. |
+| 129 | [129-coding-challenges-coach](129-coding-challenges-coach/) | Python | AI coach that guides you through a coding challenge. |

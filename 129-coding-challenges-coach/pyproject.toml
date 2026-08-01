@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cc-coach"
+version = "1.0.0"
+description = "Coding Challenges Coach agent (Coding Challenge #129)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+live = ["anthropic>=0.40"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+coach = "coach.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,42 @@
+# Deployment configuration for the Coding Challenges Coach (Steps 6-8).
+#
+# In a real deployment this is consumed by `adk deploy` targeting Google Cloud
+# Agent Runtime. Locally it is the input to the mock security audit
+# (`python -m coach.audit`), which enforces the Step 8 checklist against it.
+
+name: coding-challenges-coach
+runtime: google-cloud-agent-runtime
+region: europe-west1
+model_light: gemini-2.0-flash
+model_capable: gemini-2.5-pro
+
+# Step 7 — Agent Identity: SPIFFE identity instead of static credentials.
+# No API keys appear anywhere in this repo; the runtime mints short-lived
+# SPIFFE SVID tokens and every action is audited by this principal.
+spiffe_id: spiffe://codingchallenges.example.org/agent/coach
+workload_identity: enabled
+
+# Step 8 — least-privilege IAM: only what the agent needs.
+iam_roles:
+  - roles/aiplatform.user
+  - roles/cloudtrace.agent
+  - roles/logging.logWriter
+
+# Session + memory state is encrypted at rest.
+state_encryption: cmek
+
+# Never ship debug surfaces to production.
+debug_endpoints_enabled: false
+
+# Step 4 safety limits, enforced by the code executor.
+execution_timeout_seconds: 30
+execution_output_cap_kb: 64
+
+# Step 9 cost controls.
+session_cost_cap_usd: 1.00
+
+# Step 10 observability + governance.
+telemetry_exporter: cloud-trace
+policy_max_difficulty: advanced
+policy_blocked_topics:
+  - crypto-mining

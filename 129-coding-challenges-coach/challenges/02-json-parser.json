@@ -1,0 +1,13 @@
+{
+  "title": "Coding Challenge #2: Build Your Own JSON Parser",
+  "difficulty": "intermediate",
+  "topics": ["parsing", "lexers", "recursion"],
+  "summary": "Write a JSON parser from scratch: a lexer that tokenises the input and a parser that validates and builds the document tree.",
+  "steps": [
+    "Parse '{}' — report valid/invalid with exit code 0/1.",
+    "Parse string keys and string values.",
+    "Add booleans, null and numbers.",
+    "Add nested objects and arrays.",
+    "Run the full official JSON test suite."
+  ]
+}
