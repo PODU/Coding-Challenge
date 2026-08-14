@@ -1,0 +1,9 @@
+{
+  "name": "sort-visualiser-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coding Challenge #130 — dependency-free, single-file sorting algorithm visualiser.",
+  "scripts": {
+    "test": "node test/test_sorts.js"
+  }
+}

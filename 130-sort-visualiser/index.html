@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sort Visualiser</title>
+<style>
+  :root {
+    --bg: #10141a;
+    --panel: #1a212b;
+    --border: #2a3442;
+    --text: #d7e0ea;
+    --muted: #7d8ba0;
+    --accent: #4f8ef7;
+    --bar-idle: #4f6d8f;
+    --bar-compare: #f7c948;
+    --bar-write: #ef5b5b;
+    --bar-sorted: #4cc38a;
+    --bar-pivot: #b57bee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  header h1 { font-size: 18px; font-weight: 600; }
+  header span { color: var(--muted); font-size: 13px; }
+  #toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+  }
+  .group { display: flex; align-items: center; gap: 6px; }
+  .group label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  select, button {
+    background: #232d3a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  select:focus, button:focus { outline: 1px solid var(--accent); }
+  button:hover:not(:disabled) { background: #2c3949; }
+  button:disabled { opacity: 0.4; cursor: default; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  button.primary:hover:not(:disabled) { background: #3f7de6; }
+  input[type=range] { accent-color: var(--accent); }
+  #stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  #stats b { color: var(--muted); font-weight: 500; margin-right: 4px; }
+  #status { margin-left: auto; color: var(--bar-sorted); font-weight: 600; }
+  #status.fail { color: var(--bar-write); }
+  #stage { flex: 1; padding: 8px 20px 20px; display: flex; }
+  canvas { width: 100%; height: 100%; min-height: 320px; display: block; border-radius: 8px; background: #0c0f14; }
+  #legend {
+    display: flex;
+    gap: 18px;
+    padding: 0 20px 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  #legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sort Visualiser</h1>
+  <span>Coding Challenge #130 — algorithms emit events, renderers draw them</span>
+</header>
+
+<div id="toolbar">
+  <div class="group">
+    <label>Algorithm</label>
+    <select id="algo"></select>
+  </div>
+  <div class="group">
+    <label>Size</label>
+    <select id="size">
+      <option>10</option><option selected>30</option><option>60</option>
+      <option>100</option><option>200</option>
+    </select>
+  </div>
+  <div class="group">
+    <label>Order</label>
+    <select id="order">
+      <option value="random" selected>Random</option>
+      <option value="reversed">Reversed</option>
+      <option value="sorted">Sorted</option>
+      <option value="nearly">Nearly sorted</option>
+    </select>
+  </div>
+  <div class="group">
+    <label>View</label>
+    <select id="view">
+      <option value="bars" selected>Bars</option>
+      <option value="numbers">Numbers</option>
+    </select>
+  </div>
+  <div class="group">
+    <label>Speed</label>
+    <select id="speedPreset">
+      <option value="4">Slow</option>
+      <option value="60" selected>Medium</option>
+      <option value="600">Fast</option>
+      <option value="custom">Custom</option>
+    </select>
+    <input type="range" id="speed" min="1" max="1000" value="60" title="operations per second">
+  </div>
+  <div class="group">
+    <button id="btnStart" class="primary">Start</button>
+    <button id="btnPause" disabled>Pause</button>
+    <button id="btnStep">Step</button>
+    <button id="btnRestart">Restart</button>
+  </div>
+</div>
+
+<div id="stats">
+  <span><b>Comparisons</b><span id="stComp">0</span></span>
+  <span><b>Writes</b><span id="stWrites">0</span></span>
+  <span><b>Accesses</b><span id="stAccess">0</span></span>
+  <span><b>Time</b><span id="stTime">0.0s</span></span>
+  <span><b>Config</b><span id="stConfig"></span></span>
+  <span id="status"></span>
+</div>
+
+<div id="legend">
+  <span><i style="background:var(--bar-idle)"></i>Idle</span>
+  <span><i style="background:var(--bar-compare)"></i>Comparing</span>
+  <span><i style="background:var(--bar-write)"></i>Swap / write</span>
+  <span><i style="background:var(--bar-pivot)"></i>Pivot / key</span>
+  <span><i style="background:var(--bar-sorted)"></i>Sorted</span>
+</div>
+
+<div id="stage"><canvas id="canvas"></canvas></div>
+
+<script>
+"use strict";
+
+// Sorts go through Tracked so every read, write and comparison is counted and
+// highlighted. Each sort is a generator that yields once per visible step; the
+// driver below decides how fast to advance and when to draw.
+class Tracked {
+  constructor(values) {
+    this.a = values;
+    this.stats = { comparisons: 0, writes: 0, accesses: 0 };
+    this.marks = { compare: [], write: [], pivot: [] };
+    this.sorted = new Set();
+  }
+  get length() { return this.a.length; }
+  clearMarks() { this.marks = { compare: [], write: [], pivot: [] }; }
+  get(i) { this.stats.accesses++; return this.a[i]; }
+  peek(i) { return this.a[i]; }
+  set(i, v) {
+    this.stats.accesses++; this.stats.writes++;
+    this.a[i] = v;
+    this.marks.write.push(i);
+  }
+  compare(i, j) {
+    this.stats.comparisons++; this.stats.accesses += 2;
+    this.marks.compare.push(i, j);
+    return this.a[i] - this.a[j];
+  }
+  compareVal(v, i) {
+    this.stats.comparisons++; this.stats.accesses++;
+    this.marks.compare.push(i);
+    return v - this.a[i];
+  }
+  swap(i, j) {
+    this.stats.accesses += 2; this.stats.writes += 2;
+    [this.a[i], this.a[j]] = [this.a[j], this.a[i]];
+    this.marks.write.push(i, j);
+  }
+  markSorted(...idx) { for (const i of idx) this.sorted.add(i); }
+}
+
+function* bubbleSort(t) {
+  const n = t.length;
+  for (let i = 0; i < n - 1; i++) {
+    let swapped = false;
+    for (let j = 0; j < n - 1 - i; j++) {
+      if (t.compare(j, j + 1) > 0) { t.swap(j, j + 1); swapped = true; }
+      yield;
+    }
+    t.markSorted(n - 1 - i);
+    if (!swapped) break;
+  }
+  for (let i = 0; i < n; i++) t.markSorted(i);
+}
+
+function* insertionSort(t) {
+  const n = t.length;
+  for (let i = 1; i < n; i++) {
+    const key = t.get(i);
+    t.marks.pivot = [i];
+    let j = i - 1;
+    while (j >= 0 && t.compareVal(key, j) < 0) {
+      t.set(j + 1, t.get(j));
+      yield;
+      j--;
+    }
+    t.set(j + 1, key);
+    yield;
+  }
+  for (let i = 0; i < n; i++) t.markSorted(i);
+}
+
+function* selectionSort(t) {
+  const n = t.length;
+  for (let i = 0; i < n - 1; i++) {
+    let min = i;
+    t.marks.pivot = [i];
+    for (let j = i + 1; j < n; j++) {
+      if (t.compare(j, min) < 0) min = j;
+      yield;
+    }
+    if (min !== i) { t.swap(i, min); yield; }
+    t.markSorted(i);
+  }
+  t.markSorted(n - 1);
+}
+
+function* mergeSort(t) {
+  yield* mergeRange(t, 0, t.length - 1);
+  for (let i = 0; i < t.length; i++) t.markSorted(i);
+}
+function* mergeRange(t, lo, hi) {
+  if (lo >= hi) return;
+  const mid = (lo + hi) >> 1;
+  yield* mergeRange(t, lo, mid);
+  yield* mergeRange(t, mid + 1, hi);
+  const left = [], right = [];
+  for (let i = lo; i <= mid; i++) left.push(t.get(i));
+  for (let i = mid + 1; i <= hi; i++) right.push(t.get(i));
+  let i = 0, j = 0, k = lo;
+  while (i < left.length && j < right.length) {
+    t.stats.comparisons++;
+    t.marks.compare.push(lo + i, mid + 1 + j);
+    if (left[i] <= right[j]) t.set(k++, left[i++]);
+    else t.set(k++, right[j++]);
+    yield;
+  }
+  while (i < left.length) { t.set(k++, left[i++]); yield; }
+  while (j < right.length) { t.set(k++, right[j++]); yield; }
+}
+
+function* quickSort(t) {
+  yield* quickRange(t, 0, t.length - 1);
+  for (let i = 0; i < t.length; i++) t.markSorted(i);
+}
+function* quickRange(t, lo, hi) {
+  if (lo >= hi) { if (lo === hi) t.markSorted(lo); return; }
+  // Lomuto partition with the last element as pivot. The pivot mark is set
+  // every step because the driver clears marks between steps.
+  let i = lo - 1;
+  for (let j = lo; j < hi; j++) {
+    t.marks.pivot = [hi];
+    if (t.compare(j, hi) < 0) { i++; if (i !== j) t.swap(i, j); }
+    yield;
+  }
+  t.swap(i + 1, hi);
+  yield;
+  t.markSorted(i + 1);
+  yield* quickRange(t, lo, i);
+  yield* quickRange(t, i + 2, hi);
+}
+
+function* heapSort(t) {
+  const n = t.length;
+  for (let i = (n >> 1) - 1; i >= 0; i--) yield* siftDown(t, i, n);
+  for (let end = n - 1; end > 0; end--) {
+    t.swap(0, end);
+    t.markSorted(end);
+    yield;
+    yield* siftDown(t, 0, end);
+  }
+  t.markSorted(0);
+}
+function* siftDown(t, root, size) {
+  while (true) {
+    let largest = root;
+    const l = 2 * root + 1, r = 2 * root + 2;
+    if (l < size && t.compare(l, largest) > 0) largest = l;
+    if (r < size && t.compare(r, largest) > 0) largest = r;
+    yield;
+    if (largest === root) return;
+    t.swap(root, largest);
+    yield;
+    root = largest;
+  }
+}
+
+function* shellSort(t) {
+  const n = t.length;
+  // Ciura's gaps, extended by a factor of 2.25 for large arrays.
+  let gaps = [1, 4, 10, 23, 57, 132, 301, 701];
+  while (gaps[gaps.length - 1] < n) gaps.push(Math.floor(gaps[gaps.length - 1] * 2.25));
+  gaps = gaps.filter(g => g < n).reverse();
+  for (const gap of gaps) {
+    for (let i = gap; i < n; i++) {
+      const key = t.get(i);
+      t.marks.pivot = [i];
+      let j = i;
+      while (j >= gap && t.compareVal(key, j - gap) < 0) {
+        t.set(j, t.get(j - gap));
+        yield;
+        j -= gap;
+      }
+      t.set(j, key);
+      yield;
+    }
+  }
+  for (let i = 0; i < n; i++) t.markSorted(i);
+}
+
+function* radixSort(t) {
+  // LSD, base 10.
+  const n = t.length;
+  let max = 0;
+  for (let i = 0; i < n; i++) max = Math.max(max, t.get(i));
+  for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+    const buckets = Array.from({ length: 10 }, () => []);
+    for (let i = 0; i < n; i++) {
+      const v = t.get(i);
+      t.marks.compare.push(i);
+      buckets[Math.floor(v / exp) % 10].push(v);
+      yield;
+    }
+    let k = 0;
+    for (const b of buckets) {
+      for (const v of b) { t.set(k++, v); yield; }
+    }
+  }
+  for (let i = 0; i < n; i++) t.markSorted(i);
+}
+
+const ALGORITHMS = {
+  "Bubble sort": bubbleSort,
+  "Insertion sort": insertionSort,
+  "Selection sort": selectionSort,
+  "Merge sort": mergeSort,
+  "Quick sort": quickSort,
+  "Heap sort": heapSort,
+  "Shell sort": shellSort,
+  "Radix sort (LSD)": radixSort,
+};
+
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+function colorFor(i, t, done) {
+  if (done || t.sorted.has(i)) return css("--bar-sorted");
+  if (t.marks.write.includes(i)) return css("--bar-write");
+  if (t.marks.compare.includes(i)) return css("--bar-compare");
+  if (t.marks.pivot.includes(i)) return css("--bar-pivot");
+  return css("--bar-idle");
+}
+
+const barsRenderer = {
+  draw(ctx, W, H, t, maxVal, done) {
+    ctx.clearRect(0, 0, W, H);
+    const n = t.length;
+    const gap = n > 120 ? 1 : 2;
+    const bw = Math.max(1, (W - gap * (n + 1)) / n);
+    for (let i = 0; i < n; i++) {
+      const h = Math.max(2, (t.peek(i) / maxVal) * (H - 16));
+      ctx.fillStyle = colorFor(i, t, done);
+      ctx.fillRect(gap + i * (bw + gap), H - h - 4, bw, h);
+    }
+  }
+};
+
+const numbersRenderer = {
+  draw(ctx, W, H, t, maxVal, done) {
+    ctx.clearRect(0, 0, W, H);
+    const n = t.length;
+    const cols = Math.ceil(Math.sqrt(n * (W / H)));
+    const rows = Math.ceil(n / cols);
+    const cw = W / cols, ch = H / rows;
+    const fs = Math.max(9, Math.min(26, Math.min(cw, ch) * 0.42));
+    ctx.font = `600 ${fs}px "Segoe UI", monospace`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    for (let i = 0; i < n; i++) {
+      const x = (i % cols) * cw, y = Math.floor(i / cols) * ch;
+      const c = colorFor(i, t, done);
+      if (c !== css("--bar-idle")) {
+        ctx.fillStyle = c + "33";
+        ctx.fillRect(x + 2, y + 2, cw - 4, ch - 4);
+      }
+      ctx.fillStyle = c;
+      ctx.fillText(String(t.peek(i)), x + cw / 2, y + ch / 2);
+    }
+  }
+};
+
+const RENDERERS = { bars: barsRenderer, numbers: numbersRenderer };
+
+const $ = id => document.getElementById(id);
+const canvas = $("canvas"), ctx = canvas.getContext("2d");
+
+const state = {
+  tracked: null, gen: null, maxVal: 1,
+  running: false, finished: false, validated: null,
+  elapsed: 0, lastTick: 0, opBudget: 0,
+  celebration: -1,
+};
+
+function opsPerSecond() { return Number($("speed").value); }
+
+function buildArray(n, order) {
+  const a = Array.from({ length: n }, (_, i) => i + 1);
+  if (order === "random" || order === "nearly") {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    if (order === "nearly") {
+      a.sort((x, y) => x - y);
+      for (let k = 0; k < Math.max(1, n / 10); k++) {
+        const i = Math.floor(Math.random() * n), j = Math.floor(Math.random() * n);
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+    }
+  } else if (order === "reversed") a.reverse();
+  return a;
+}
+
+function reset() {
+  const n = Number($("size").value);
+  const arr = buildArray(n, $("order").value);
+  state.tracked = new Tracked(arr);
+  state.maxVal = Math.max(...arr);
+  state.gen = ALGORITHMS[$("algo").value](state.tracked);
+  state.running = false;
+  state.finished = false;
+  state.validated = null;
+  state.elapsed = 0;
+  state.opBudget = 0;
+  state.celebration = -1;
+  updateButtons();
+  updateStats();
+  $("status").textContent = "";
+}
+
+function finish() {
+  state.running = false;
+  state.finished = true;
+  state.tracked.clearMarks();
+  const a = state.tracked.a;
+  state.validated = a.every((v, i) => i === 0 || a[i - 1] <= v);
+  state.celebration = 0;
+  const el = $("status");
+  el.textContent = state.validated ? "✓ Sorted" : "✗ NOT sorted!";
+  el.className = state.validated ? "" : "fail";
+  updateButtons();
+}
+
+function advance(nOps) {
+  const t = state.tracked;
+  t.clearMarks();
+  for (let k = 0; k < nOps; k++) {
+    if (state.gen.next().done) { finish(); return; }
+    if (k < nOps - 1) t.clearMarks(); // only the last step of a frame is highlighted
+  }
+}
+
+function loop(ts) {
+  requestAnimationFrame(loop);
+  const dt = state.lastTick ? (ts - state.lastTick) / 1000 : 0;
+  state.lastTick = ts;
+
+  if (state.running && !state.finished) {
+    state.elapsed += dt;
+    state.opBudget += dt * opsPerSecond();
+    const n = Math.floor(state.opBudget);
+    if (n > 0) { state.opBudget -= n; advance(Math.min(n, 5000)); }
+  }
+  if (state.celebration >= 0 && state.celebration < state.tracked.length) {
+    state.celebration += Math.max(1, state.tracked.length / 30);
+  }
+  render();
+  updateStats();
+}
+
+function render() {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+  }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const t = state.tracked;
+  const done = state.finished && state.validated;
+  // When finished, sweep the "sorted" colour across from left to right.
+  const sweep = state.celebration >= 0 ? Math.floor(state.celebration) : -1;
+  if (done && sweep >= 0 && sweep < t.length) {
+    const realSorted = t.sorted;
+    t.sorted = new Set(Array.from({ length: sweep + 1 }, (_, i) => i));
+    RENDERERS[$("view").value].draw(ctx, rect.width, rect.height, t, state.maxVal, false);
+    t.sorted = realSorted;
+  } else {
+    RENDERERS[$("view").value].draw(ctx, rect.width, rect.height, t, state.maxVal, done);
+  }
+}
+
+function updateStats() {
+  const s = state.tracked.stats;
+  $("stComp").textContent = s.comparisons.toLocaleString();
+  $("stWrites").textContent = s.writes.toLocaleString();
+  $("stAccess").textContent = s.accesses.toLocaleString();
+  $("stTime").textContent = state.elapsed.toFixed(1) + "s";
+  $("stConfig").textContent =
+    `${$("algo").value} · n=${$("size").value} · ${$("order").value} · ${opsPerSecond()} ops/s`;
+}
+
+function updateButtons() {
+  $("btnStart").textContent = state.running ? "Running…" : (state.elapsed > 0 && !state.finished ? "Resume" : "Start");
+  $("btnStart").disabled = state.running || state.finished;
+  $("btnPause").disabled = !state.running;
+  $("btnStep").disabled = state.running || state.finished;
+}
+
+for (const name of Object.keys(ALGORITHMS)) {
+  const o = document.createElement("option");
+  o.textContent = name;
+  $("algo").appendChild(o);
+}
+
+$("btnStart").onclick = () => { state.running = true; updateButtons(); };
+$("btnPause").onclick = () => { state.running = false; updateButtons(); };
+$("btnStep").onclick = () => { if (!state.finished) advance(1); };
+$("btnRestart").onclick = reset;
+$("speedPreset").onchange = e => {
+  if (e.target.value !== "custom") $("speed").value = e.target.value;
+};
+$("speed").oninput = () => { $("speedPreset").value = "custom"; };
+for (const id of ["algo", "size", "order"]) $(id).onchange = reset;
+
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); state.running && !state.finished ? $("btnPause").click() : $("btnStart").click(); }
+  if (e.key === "s") $("btnStep").click();
+  if (e.key === "r") $("btnRestart").click();
+});
+
+reset();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
