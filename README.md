@@ -135,3 +135,4 @@ Each folder is a self-contained project with its own README.
 | 128 | [128-mock-interview](128-mock-interview/) | Python | Practice behavioural interviews with a live AI video interviewer. |
 | 129 | [129-coding-challenges-coach](129-coding-challenges-coach/) | Python | AI coach that guides you through a coding challenge. |
 | 130 | [130-sort-visualiser](130-sort-visualiser/) | JavaScript | Animates sorting algorithms step by step in the browser. |
+| 131 | [131-code-review-agent](131-code-review-agent/) | Python | Reviews pull requests automatically and posts comments. |

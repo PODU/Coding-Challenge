@@ -1,0 +1,139 @@
+# Step 8: per-file parallel review for large PRs.
+# Each changed file becomes its own model call (visible as a fan-out in the
+# execution graph). Lock/generated files are skipped and reported. Results
+# merge into ONE comment sorted CRITICAL first.
+id: code_review_parallel
+namespace: reviewme
+
+concurrency:
+  limit: 1
+  behavior: CANCEL
+
+inputs:
+  - id: owner
+    type: STRING
+    defaults: JohnCrickett
+  - id: repo
+    type: STRING
+    defaults: ReviewMe
+  - id: pr_number
+    type: INT
+  - id: guidelines
+    type: STRING
+    defaults: |
+      - Never commit secrets, API keys, or credentials.
+      - Avoid deeply nested conditionals; prefer early returns.
+      - Guard against division by zero.
+
+variables:
+  skip_regex: "(\\.lock$|^uv\\.lock$|package-lock\\.json$|yarn\\.lock$|\\.min\\.(js|css)$|^(vendor|node_modules|dist|build)/)"
+  system_prompt: |
+    You are a senior software engineer reviewing ONE file from a pull
+    request diff. Respond with ONLY a JSON object:
+    {"summary": "...", "issues": [{"severity": "CRITICAL|MAJOR|MINOR",
+     "file": "...", "line": null, "title": "...", "detail": "..."}],
+     "suggestions": [], "verdict": "APPROVE|REQUEST_CHANGES|COMMENT"}
+    If the file is fine, return an empty issues list. Do not invent issues.
+
+tasks:
+  - id: fetch_pr_files
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}/files?per_page=100"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+    retry:
+      type: exponential
+      interval: PT2S
+      maxInterval: PT30S
+      maxAttempt: 3
+
+  - id: log_skipped
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      Skipping generated/lock files:
+      {{ json(outputs.fetch_pr_files.body) | jq('[.[] | select(.filename | test("' ~ vars.skip_regex ~ '")) | .filename]') }}
+
+  - id: review_each_file
+    type: io.kestra.plugin.core.flow.ForEach
+    concurrencyLimit: 4          # parallel fan-out, visible in the graph
+    values: "{{ json(outputs.fetch_pr_files.body) | jq('[.[] | select((.filename | test(\"' ~ vars.skip_regex ~ '\")) | not) | select(.patch != null)]') }}"
+    tasks:
+      - id: review_file
+        type: io.kestra.plugin.core.http.Request
+        uri: https://api.anthropic.com/v1/messages
+        method: POST
+        options:
+          readTimeout: PT120S
+        retry:
+          type: exponential
+          interval: PT5S
+          maxInterval: PT60S
+          maxAttempt: 3
+        headers:
+          x-api-key: "{{ secret('ANTHROPIC_API_KEY') }}"
+          anthropic-version: "2023-06-01"
+          Content-Type: application/json
+        body: |
+          {
+            "model": "claude-sonnet-5",
+            "max_tokens": 2048,
+            "system": {{ vars.system_prompt | json }},
+            "messages": [{
+              "role": "user",
+              "content": {{ (
+                "## Team review guidelines\n" ~ inputs.guidelines ~
+                "\n\n## File: " ~ json(taskrun.value).filename ~
+                "\n```diff\n" ~ json(taskrun.value).patch ~ "\n```"
+              ) | json }}
+            }]
+          }
+
+  # Merge per-file JSON reviews, sort by severity, render markdown, decide.
+  # Deterministic logic belongs in code, not templating — use the package.
+  - id: merge_and_post
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.12-slim
+    env:
+      GITHUB_TOKEN: "{{ secret('GITHUB_TOKEN') }}"
+      OWNER: "{{ inputs.owner }}"
+      REPO: "{{ inputs.repo }}"
+      PR_NUMBER: "{{ inputs.pr_number }}"
+      REVIEWS_JSON: "{{ outputs.review_file | jq('[.[].body]') }}"
+      SKIPPED_JSON: "{{ json(outputs.fetch_pr_files.body) | jq('[.[] | select(.filename | test(\"' ~ vars.skip_regex ~ '\")) | .filename]') }}"
+    script: |
+      import json, os, urllib.request
+      reviews = [json.loads(json.loads(r)["content"][0]["text"])
+                 for r in json.loads(os.environ["REVIEWS_JSON"])]
+      issues = [i for r in reviews for i in r.get("issues", [])]
+      rank = {"CRITICAL": 0, "MAJOR": 1, "MINOR": 2}
+      issues.sort(key=lambda i: rank.get(i.get("severity"), 3))
+      if not issues:
+          print("No issues found — not posting.")
+          raise SystemExit(0)
+      lines = ["## 🤖 Automated Code Review", ""]
+      for i in issues:
+          lines.append(f"- **{i['severity']}** `{i.get('file','')}` — "
+                       f"{i.get('title','')}: {i.get('detail','')}")
+      skipped = json.loads(os.environ["SKIPPED_JSON"])
+      if skipped:
+          lines += ["", "**Skipped (generated/lock files):** "
+                    + ", ".join(f"`{s}`" for s in skipped)]
+      req = urllib.request.Request(
+          f"https://api.github.com/repos/{os.environ['OWNER']}/"
+          f"{os.environ['REPO']}/issues/{os.environ['PR_NUMBER']}/comments",
+          data=json.dumps({"body": "\n".join(lines)}).encode(),
+          headers={"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+                   "Accept": "application/vnd.github+json",
+                   "Content-Type": "application/json"},
+          method="POST")
+      urllib.request.urlopen(req)
+      print(f"Posted one comment with {len(issues)} issue(s).")
+
+errors:
+  - id: notify_failure
+    type: io.kestra.plugin.notifications.slack.SlackIncomingWebhook
+    url: "{{ secret('SLACK_WEBHOOK_URL') }}"
+    payload: |
+      { "text": "❌ Parallel review failed — execution `{{ execution.id }}`." }

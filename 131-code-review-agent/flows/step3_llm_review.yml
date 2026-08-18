@@ -1,0 +1,75 @@
+# Step 3: add the language model with structured output.
+# Guidelines arrive as an INPUT — change the rules without editing the flow.
+id: code_review_step3
+namespace: reviewme
+
+inputs:
+  - id: owner
+    type: STRING
+    defaults: JohnCrickett
+  - id: repo
+    type: STRING
+    defaults: ReviewMe
+  - id: pr_number
+    type: INT
+  - id: guidelines
+    type: STRING
+    defaults: |
+      - Never commit secrets, API keys, or credentials.
+      - Avoid deeply nested conditionals; prefer early returns.
+      - Guard against division by zero.
+
+variables:
+  system_prompt: |
+    You are a senior software engineer reviewing a pull request diff.
+    Respond in exactly this structure:
+    ## Summary
+    ## Issues Found (each tagged CRITICAL, MAJOR, or MINOR with file name)
+    ## Suggestions
+    ## Verdict (APPROVE, REQUEST_CHANGES, or COMMENT)
+    If the change is trivial and correct, say "No issues found" under
+    Issues Found and verdict APPROVE. Do not invent issues.
+
+tasks:
+  - id: fetch_pr_files
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}/files?per_page=100"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+
+  - id: fetch_pr_metadata
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+
+  - id: review
+    type: io.kestra.plugin.core.http.Request
+    uri: https://api.anthropic.com/v1/messages
+    method: POST
+    headers:
+      x-api-key: "{{ secret('ANTHROPIC_API_KEY') }}"
+      anthropic-version: "2023-06-01"
+      Content-Type: application/json
+    body: |
+      {
+        "model": "claude-sonnet-5",
+        "max_tokens": 4096,
+        "system": {{ vars.system_prompt | json }},
+        "messages": [{
+          "role": "user",
+          "content": {{ (
+            "## Pull request\nTitle: " ~ json(outputs.fetch_pr_metadata.body).title ~
+            "\n\n## Team review guidelines\n" ~ inputs.guidelines ~
+            "\n\n## Changed files (JSON with patches)\n" ~ outputs.fetch_pr_files.body
+          ) | json }}
+        }]
+      }
+
+  - id: log_review
+    type: io.kestra.plugin.core.log.Log
+    message: "{{ json(outputs.review.body).content[0].text }}"

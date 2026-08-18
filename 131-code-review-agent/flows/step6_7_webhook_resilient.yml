@@ -1,0 +1,115 @@
+# Steps 6 + 7: webhook-triggered, concurrency-limited, retrying, observable.
+#
+# GitHub webhook setup:
+#   Payload URL: https://<ngrok-host>/api/v1/executions/webhook/reviewme/code_review_webhook/<WEBHOOK_KEY>
+#   Content type: application/json, events: "Pull requests" only.
+#   Tunnel: `ngrok http 8080`
+#
+# Concurrency: one review per flow at a time; a new push CANCELs queued
+# reviews (the newest code supersedes the old review).
+id: code_review_webhook
+namespace: reviewme
+
+concurrency:
+  limit: 1
+  behavior: CANCEL
+
+triggers:
+  - id: github_pr_webhook
+    type: io.kestra.plugin.core.trigger.Webhook
+    key: "{{ secret('WEBHOOK_KEY') }}"
+    conditions:
+      - type: io.kestra.plugin.core.condition.Expression
+        # Only PR lifecycle events; ignore labels, comments, everything else.
+        expression: "{{ trigger.body.action in ['opened', 'reopened', 'synchronize'] and trigger.body.pull_request is defined }}"
+
+variables:
+  owner: "{{ trigger.body.repository.owner.login }}"
+  repo: "{{ trigger.body.repository.name }}"
+  pr_number: "{{ trigger.body.pull_request.number }}"
+  system_prompt: |
+    You are a senior software engineer reviewing a pull request diff.
+    Respond in exactly this structure:
+    ## Summary
+    ## Issues Found (each tagged CRITICAL, MAJOR, or MINOR with file name)
+    ## Suggestions
+    ## Verdict (APPROVE, REQUEST_CHANGES, or COMMENT)
+    If the change is trivial and correct, output exactly "NO_ISSUES" as the
+    entire Issues Found section. Do not invent issues in trivial changes.
+
+tasks:
+  - id: fetch_pr_files
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ vars.owner }}/{{ vars.repo }}/pulls/{{ vars.pr_number }}/files?per_page=100"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+    retry:                       # Step 7: 3 attempts, exponential backoff
+      type: exponential
+      interval: PT2S
+      maxInterval: PT30S
+      maxAttempt: 3
+
+  - id: review
+    type: io.kestra.plugin.core.http.Request
+    uri: https://api.anthropic.com/v1/messages
+    method: POST
+    options:
+      readTimeout: PT120S        # Step 7: model calls must not hang forever
+    retry:
+      type: exponential
+      interval: PT5S
+      maxInterval: PT60S
+      maxAttempt: 3
+    headers:
+      x-api-key: "{{ secret('ANTHROPIC_API_KEY') }}"
+      anthropic-version: "2023-06-01"
+      Content-Type: application/json
+    body: |
+      {
+        "model": "claude-sonnet-5",
+        "max_tokens": 4096,
+        "system": {{ vars.system_prompt | json }},
+        "messages": [{
+          "role": "user",
+          "content": {{ ("## Changed files (JSON with patches)\n" ~ outputs.fetch_pr_files.body) | json }}
+        }]
+      }
+
+  - id: extract_text
+    type: io.kestra.plugin.core.debug.Return
+    format: "{{ json(outputs.review.body).content[0].text }}"
+
+  - id: decide_and_post
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.extract_text.value contains 'NO_ISSUES' == false }}"
+    then:
+      - id: post_comment
+        type: io.kestra.plugin.core.http.Request
+        uri: "https://api.github.com/repos/{{ vars.owner }}/{{ vars.repo }}/issues/{{ vars.pr_number }}/comments"
+        method: POST
+        retry:
+          type: exponential
+          interval: PT2S
+          maxInterval: PT30S
+          maxAttempt: 3
+        headers:
+          Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+          Accept: application/vnd.github+json
+          Content-Type: application/json
+        body: |
+          { "body": {{ ("## 🤖 Automated Code Review\n\n" ~ outputs.extract_text.value) | json }} }
+    else:
+      - id: log_skip
+        type: io.kestra.plugin.core.log.Log
+        message: "No issues found — not posting."
+
+errors:                          # Step 7: failure is loud, not silent
+  - id: notify_failure
+    type: io.kestra.plugin.notifications.slack.SlackIncomingWebhook
+    url: "{{ secret('SLACK_WEBHOOK_URL') }}"
+    payload: |
+      {
+        "text": "❌ Code review failed for {{ vars.owner }}/{{ vars.repo }}#{{ vars.pr_number }} — execution `{{ execution.id }}` in flow `{{ flow.id }}`. Check Kestra logs."
+      }

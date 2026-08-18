@@ -1,0 +1,44 @@
+# Step 2: move the fragile script into a workflow engine.
+# No model yet — just fetch, log, and get execution history for free.
+id: code_review_step2
+namespace: reviewme
+
+inputs:
+  - id: owner
+    type: STRING
+    defaults: JohnCrickett
+  - id: repo
+    type: STRING
+    defaults: ReviewMe
+  - id: pr_number
+    type: INT
+
+tasks:
+  - id: fetch_pr_files
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}/files?per_page=100"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+      X-GitHub-Api-Version: "2022-11-28"
+
+  - id: fetch_pr_metadata
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+      X-GitHub-Api-Version: "2022-11-28"
+
+  - id: log_pr
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      PR: {{ json(outputs.fetch_pr_metadata.body).title }}
+      Description: {{ json(outputs.fetch_pr_metadata.body).body }}
+      Changed files: {{ json(outputs.fetch_pr_files.body) | length }}
+
+  - id: log_diff
+    type: io.kestra.plugin.core.log.Log
+    message: "{{ outputs.fetch_pr_files.body }}"

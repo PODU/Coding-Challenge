@@ -1,0 +1,61 @@
+# Step 9: the full agent — clone PR head, run ruff in a container, feed
+# deterministic findings to the model, review remaining files in parallel,
+# post one merged comment. Orchestration lives here; all review logic lives
+# in the cc-review-agent Python package (tested offline).
+id: code_review_full
+namespace: reviewme
+
+concurrency:
+  limit: 1
+  behavior: CANCEL
+
+triggers:
+  - id: github_pr_webhook
+    type: io.kestra.plugin.core.trigger.Webhook
+    key: "{{ secret('WEBHOOK_KEY') }}"
+    conditions:
+      - type: io.kestra.plugin.core.condition.Expression
+        expression: "{{ trigger.body.action in ['opened', 'reopened', 'synchronize'] and trigger.body.pull_request is defined }}"
+
+variables:
+  owner: "{{ trigger.body.repository.owner.login }}"
+  repo: "{{ trigger.body.repository.name }}"
+  pr_number: "{{ trigger.body.pull_request.number }}"
+  head_sha: "{{ trigger.body.pull_request.head.sha }}"
+  clone_url: "{{ trigger.body.repository.clone_url }}"
+
+tasks:
+  - id: review
+    type: io.kestra.plugin.scripts.shell.Commands
+    containerImage: python:3.12-slim
+    env:
+      GITHUB_TOKEN: "{{ secret('GITHUB_TOKEN') }}"
+      REVIEW_PROVIDER: anthropic
+      REVIEW_MODEL: claude-sonnet-5
+      REVIEW_API_KEY: "{{ secret('ANTHROPIC_API_KEY') }}"
+      REVIEW_MAX_WORKERS: "4"
+    beforeCommands:
+      - apt-get update -qq && apt-get install -y -qq git > /dev/null
+      - pip install -q ruff "cc-review-agent @ git+https://github.com/YOURUSER/coding-challenges.git#subdirectory=131-code-review-agent"
+    commands:
+      # 1. Clone the repository at the PR head commit (shallow).
+      - git init -q checkout && cd checkout && git remote add origin "{{ vars.clone_url }}"
+      - cd checkout && git fetch -q --depth 1 origin "{{ vars.head_sha }}" && git checkout -q FETCH_HEAD
+      # 2+3+4. Ruff runs inside review-agent (--lint), findings are fed to
+      # the model as facts; per-file parallel review; one merged comment.
+      - review-agent "{{ vars.owner }}" "{{ vars.repo }}" "{{ vars.pr_number }}" --lint checkout --json
+    timeout: PT10M
+    retry:
+      type: exponential
+      interval: PT5S
+      maxInterval: PT60S
+      maxAttempt: 3
+
+errors:
+  - id: notify_failure
+    type: io.kestra.plugin.notifications.slack.SlackIncomingWebhook
+    url: "{{ secret('SLACK_WEBHOOK_URL') }}"
+    payload: |
+      {
+        "text": "❌ Code review failed for {{ vars.owner }}/{{ vars.repo }}#{{ vars.pr_number }} — execution `{{ execution.id }}`."
+      }

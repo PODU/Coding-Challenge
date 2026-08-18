@@ -1,0 +1,23 @@
+# Kestra (open source) for the workflow steps.
+# Secrets in OSS edition: SECRET_-prefixed env vars, base64-encoded values.
+#   e.g. SECRET_GITHUB_TOKEN=$(echo -n "ghp_..." | base64)
+services:
+  kestra:
+    image: kestra/kestra:latest
+    command: server local
+    ports:
+      - "8080:8080"
+    environment:
+      SECRET_GITHUB_TOKEN: ${SECRET_GITHUB_TOKEN}
+      SECRET_ANTHROPIC_API_KEY: ${SECRET_ANTHROPIC_API_KEY}
+      SECRET_OPENAI_API_KEY: ${SECRET_OPENAI_API_KEY}
+      SECRET_GEMINI_API_KEY: ${SECRET_GEMINI_API_KEY}
+      SECRET_WEBHOOK_KEY: ${SECRET_WEBHOOK_KEY}
+      SECRET_SLACK_WEBHOOK_URL: ${SECRET_SLACK_WEBHOOK_URL}
+    volumes:
+      - kestra-data:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock   # containerized script tasks
+      - ./flows:/app/flows-local:ro
+
+volumes:
+  kestra-data:

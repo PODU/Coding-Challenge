@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cc-review-agent"
+version = "1.0.0"
+description = "Automated Code Review Agent (Coding Challenge #131)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+lint = ["ruff>=0.6"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+review-agent = "reviewagent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,99 @@
+# Step 4: post the review to GitHub — but only when there is signal.
+# Secrets via secret(); in Kestra OSS export SECRET_GITHUB_TOKEN etc.
+# (base64-encoded values) into the Kestra container.
+#
+# Step 5 note (provider swap): switching to another provider changes only
+# the three highlighted lines in the `review` task — uri, auth header, and
+# model — plus the response path in `extract_text`. See the provider cheat-sheet in README.md.
+id: code_review_step4
+namespace: reviewme
+
+inputs:
+  - id: owner
+    type: STRING
+    defaults: JohnCrickett
+  - id: repo
+    type: STRING
+    defaults: ReviewMe
+  - id: pr_number
+    type: INT
+  - id: guidelines
+    type: STRING
+    defaults: |
+      - Never commit secrets, API keys, or credentials.
+      - Avoid deeply nested conditionals; prefer early returns.
+      - Guard against division by zero.
+
+variables:
+  system_prompt: |
+    You are a senior software engineer reviewing a pull request diff.
+    Respond in exactly this structure:
+    ## Summary
+    ## Issues Found (each tagged CRITICAL, MAJOR, or MINOR with file name)
+    ## Suggestions
+    ## Verdict (APPROVE, REQUEST_CHANGES, or COMMENT)
+    If the change is trivial and correct, output exactly "NO_ISSUES" as the
+    entire Issues Found section. Do not invent issues in trivial changes.
+
+tasks:
+  - id: fetch_pr_files
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}/files?per_page=100"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+
+  - id: fetch_pr_metadata
+    type: io.kestra.plugin.core.http.Request
+    uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/pulls/{{ inputs.pr_number }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+      Accept: application/vnd.github+json
+
+  - id: review
+    type: io.kestra.plugin.core.http.Request
+    uri: https://api.anthropic.com/v1/messages        # provider line 1
+    method: POST
+    headers:
+      x-api-key: "{{ secret('ANTHROPIC_API_KEY') }}"  # provider line 2
+      anthropic-version: "2023-06-01"
+      Content-Type: application/json
+    body: |
+      {
+        "model": "claude-sonnet-5",                    {# provider line 3 #}
+        "max_tokens": 4096,
+        "system": {{ vars.system_prompt | json }},
+        "messages": [{
+          "role": "user",
+          "content": {{ (
+            "## Pull request\nTitle: " ~ json(outputs.fetch_pr_metadata.body).title ~
+            "\n\n## Team review guidelines\n" ~ inputs.guidelines ~
+            "\n\n## Changed files (JSON with patches)\n" ~ outputs.fetch_pr_files.body
+          ) | json }}
+        }]
+      }
+
+  - id: extract_text
+    type: io.kestra.plugin.core.debug.Return
+    format: "{{ json(outputs.review.body).content[0].text }}"
+
+  - id: decide_and_post
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.extract_text.value contains 'NO_ISSUES' == false }}"
+    then:
+      - id: post_comment
+        type: io.kestra.plugin.core.http.Request
+        uri: "https://api.github.com/repos/{{ inputs.owner }}/{{ inputs.repo }}/issues/{{ inputs.pr_number }}/comments"
+        method: POST
+        headers:
+          Authorization: "Bearer {{ secret('GITHUB_TOKEN') }}"
+          Accept: application/vnd.github+json
+          Content-Type: application/json
+        body: |
+          { "body": {{ ("## 🤖 Automated Code Review\n\n" ~ outputs.extract_text.value) | json }} }
+    else:
+      - id: log_skip
+        type: io.kestra.plugin.core.log.Log
+        message: "No issues found — not posting a comment (avoiding 'looks good' spam)."
