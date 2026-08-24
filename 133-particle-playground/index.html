@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Particle Playground — Coding Challenge #133</title>
+<style>
+  :root {
+    --bg: #14161a;
+    --panel: #1e2128;
+    --border: #2e323b;
+    --text: #d7dae0;
+    --muted: #8a8f99;
+    --accent: #e8a33d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+  }
+  .app { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .stage { position: relative; }
+  canvas#view {
+    display: block;
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: crosshair;
+    image-rendering: pixelated;
+  }
+  .hud {
+    position: absolute;
+    top: 8px; left: 8px;
+    font: 12px/1.5 Consolas, monospace;
+    color: #9fd48a;
+    background: rgba(0,0,0,0.45);
+    padding: 4px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    white-space: pre;
+  }
+  .panel {
+    width: 240px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  h1 { font-size: 15px; color: var(--accent); }
+  h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .palette button {
+    padding: 7px 2px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #262a33;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .palette button.sel { border-color: var(--accent); background: #3a3324; color: var(--accent); }
+  .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 3px; vertical-align: -1px; }
+  .row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .row label { flex: 0 0 74px; color: var(--muted); }
+  .row input[type=range] { flex: 1; accent-color: var(--accent); }
+  .row output { flex: 0 0 30px; text-align: right; font: 11px Consolas, monospace; }
+  .btns { display: flex; gap: 6px; }
+  .btns button {
+    flex: 1;
+    padding: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #262a33;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .btns button:hover { border-color: var(--accent); }
+  select {
+    width: 100%;
+    padding: 6px;
+    background: #262a33;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .hint { font-size: 11px; color: var(--muted); line-height: 1.5; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <div class="stage">
+      <canvas id="view" width="960" height="640"></canvas>
+      <div class="hud" id="hud"></div>
+    </div>
+    <div class="panel">
+      <h1>Particle Playground</h1>
+
+      <div>
+        <h2>Materials</h2>
+        <div class="palette" id="palette"></div>
+      </div>
+
+      <div>
+        <h2>Brush &amp; Forces</h2>
+        <div class="row"><label>Brush size</label><input type="range" id="brush" min="1" max="20" value="4"><output id="brushOut">4</output></div>
+        <div class="row"><label>Wind</label><input type="range" id="wind" min="-200" max="200" value="0"><output id="windOut">0</output></div>
+      </div>
+
+      <div>
+        <h2>Fireworks</h2>
+        <select id="pattern">
+          <option value="ring">Ring / Sphere</option>
+          <option value="willow">Willow</option>
+          <option value="crossette">Crossette</option>
+          <option value="strobe">Strobe</option>
+        </select>
+        <div class="row" style="margin-top:8px"><label>Burst height</label><input type="range" id="burst" min="60" max="500" value="260"><output id="burstOut">260</output></div>
+      </div>
+
+      <div class="btns">
+        <button id="pauseBtn">Pause</button>
+        <button id="clearBtn">Clear</button>
+      </div>
+
+      <div class="hint">
+        Click / drag to paint. Mouse wheel resizes brush.<br>
+        <b>Firework</b> tool: click to launch (slider sets burst height) or drag upward — drag distance overrides slider.<br>
+        <b>Sparks</b> tool: plain physics particles (step 1&ndash;2 demo).
+      </div>
+    </div>
+  </div>
+<script src="playground.js"></script>
+</body>
+</html>

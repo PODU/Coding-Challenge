@@ -136,3 +136,4 @@ Each folder is a self-contained project with its own README.
 | 129 | [129-coding-challenges-coach](129-coding-challenges-coach/) | Python | AI coach that guides you through a coding challenge. |
 | 130 | [130-sort-visualiser](130-sort-visualiser/) | JavaScript | Animates sorting algorithms step by step in the browser. |
 | 131 | [131-code-review-agent](131-code-review-agent/) | Python | Reviews pull requests automatically and posts comments. |
+| 133 | [133-particle-playground](133-particle-playground/) | JavaScript | Falling-sand simulation with fire, water and fireworks. |

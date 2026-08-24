@@ -1,0 +1,9 @@
+{
+  "name": "particle-playground-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coding Challenge #133 — falling-sand cellular automaton coupled with a particle engine.",
+  "scripts": {
+    "test": "node test/test_playground.js"
+  }
+}
