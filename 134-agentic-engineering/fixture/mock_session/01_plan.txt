@@ -1,0 +1,6 @@
+# Plan
+
+1. `calc.py::subtract` returns `a + b`; change to `a - b`.
+2. `calc.py::divide` raises ZeroDivisionError; per spec it should return
+   `None` when the divisor is 0.
+3. Re-run the test suite to confirm all five tests pass.
