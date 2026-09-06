@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccvoice"
+version = "1.0.0"
+description = "Private, offline voice dictation — hotkey to cursor (Coding Challenge #135)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+audio = ["sounddevice>=0.4"]
+hotkey = ["pynput>=1.7"]
+fast = ["faster-whisper>=1.0"]
+stream = ["vosk>=0.3.45"]
+dev = ["pytest>=8.0"]
+lint = ["ruff>=0.6"]
+
+[project.scripts]
+ccvoice = "ccvoice.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+src = ["src", "tests"]
