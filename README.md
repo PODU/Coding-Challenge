@@ -139,3 +139,4 @@ Each folder is a self-contained project with its own README.
 | 133 | [133-particle-playground](133-particle-playground/) | JavaScript | Falling-sand simulation with fire, water and fireworks. |
 | 134 | [134-agentic-engineering](134-agentic-engineering/) | Python | Runs an autonomous plan, code, test and review loop with crash recovery. |
 | 135 | [135-voice-dictation](135-voice-dictation/) | Python | Speech-to-text dictation app with history. |
+| 136 | [136-hyperfine](136-hyperfine/) | Go | Benchmarks shell commands with statistical analysis. |
