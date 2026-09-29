@@ -141,3 +141,4 @@ Each folder is a self-contained project with its own README.
 | 135 | [135-voice-dictation](135-voice-dictation/) | Python | Speech-to-text dictation app with history. |
 | 136 | [136-hyperfine](136-hyperfine/) | Go | Benchmarks shell commands with statistical analysis. |
 | 137 | [137-fzf](137-fzf/) | Go | Interactive fuzzy finder for the terminal. |
+| 138 | [138-dbm](138-dbm/) | Go | Key-value store using extendible hashing. |
