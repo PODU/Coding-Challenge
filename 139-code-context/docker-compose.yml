@@ -1,0 +1,20 @@
+# Oracle AI Database 26ai Free, for the Oracle reference path (see README "Oracle").
+# The default ccctx backend is embedded SQLite and needs none of this.
+#
+#   docker compose up -d
+#   docker compose logs -f oracle      # wait for "DATABASE IS READY TO USE!"
+#   ccctx oracle all > ccctx.sql       # then run it as the ccctx user
+services:
+  oracle:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: ccctx-oracle
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PWD: ccctx_admin
+    volumes:
+      - oracle-data:/opt/oracle/oradata          # persistent storage
+      - ./models:/opt/oracle/models              # unzip all_MiniLM_L12_v2_augmented.zip here
+      - ./oracle-init:/opt/oracle/scripts/setup  # runs once, on first start
+volumes:
+  oracle-data:

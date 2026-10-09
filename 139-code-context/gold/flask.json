@@ -1,0 +1,28 @@
+{
+  "repo": "flask",
+  "k": 10,
+  "questions": [
+    {"q": "build a url for an endpoint", "expected": ["url_for"]},
+    {"q": "render a template with a context", "expected": ["render_template"]},
+    {"q": "return a json response", "expected": ["jsonify"]},
+    {"q": "register a blueprint on the application", "expected": ["register_blueprint"]},
+    {"q": "abort the request with an http error code", "expected": ["abort"]},
+    {"q": "redirect the client to another location", "expected": ["redirect"]},
+    {"q": "send a file from a directory safely", "expected": ["send_from_directory"]},
+    {"q": "load configuration values from a python file", "expected": ["from_pyfile"]},
+    {"q": "register a function to handle an error code or exception", "expected": ["errorhandler", "register_error_handler"]},
+    {"q": "run the local development server", "expected": ["Flask.run"]},
+    {"q": "create a client for testing the application", "expected": ["test_client"]},
+    {"q": "flash a message to show on the next request", "expected": ["flash"]},
+    {"q": "retrieve flashed messages from the session", "expected": ["get_flashed_messages"]},
+    {"q": "sign the session cookie", "expected": ["SecureCookieSessionInterface"]},
+    {"q": "decorator to register a view function for a url rule", "expected": ["route", "add_url_rule"]},
+    {"q": "keep the request context while streaming a response", "expected": ["stream_with_context"]},
+    {"q": "functions called when the application context is popped", "expected": ["teardown_appcontext"]},
+    {"q": "match the url and call the view function for the request", "expected": ["dispatch_request", "full_dispatch_request"]},
+    {"q": "kubernetes pod autoscaling policy", "expected": []},
+    {"q": "train a convolutional neural network on images", "expected": []},
+    {"q": "compile vertex shaders for the gpu", "expected": []},
+    {"q": "bitcoin mining difficulty adjustment", "expected": []}
+  ]
+}
