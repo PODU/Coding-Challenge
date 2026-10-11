@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccprox"
+version = "1.0.0"
+description = "Bluetooth LE proximity finder — survey, calibrate and hunt by RSSI (Coding Challenge #140)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["bleak>=0.22"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "dbus-fast>=2.0"]  # dbus-fast: BlueZ classic tests run on any OS
+
+[project.scripts]
+ccprox = "ccprox.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
