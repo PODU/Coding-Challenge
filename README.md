@@ -144,3 +144,4 @@ Each folder is a self-contained project with its own README.
 | 138 | [138-dbm](138-dbm/) | Go | Key-value store using extendible hashing. |
 | 139 | [139-code-context](139-code-context/) | Python | MCP server that gives AI agents searchable code context. |
 | 140 | [140-bluetooth-proximity](140-bluetooth-proximity/) | Python | Warmer/colder finder for Bluetooth LE devices using signal strength. |
+| 141 | [141-tail](141-tail/) | Go | Prints the last lines of files and follows them as they grow. |
