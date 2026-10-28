@@ -145,3 +145,4 @@ Each folder is a self-contained project with its own README.
 | 139 | [139-code-context](139-code-context/) | Python | MCP server that gives AI agents searchable code context. |
 | 140 | [140-bluetooth-proximity](140-bluetooth-proximity/) | Python | Warmer/colder finder for Bluetooth LE devices using signal strength. |
 | 141 | [141-tail](141-tail/) | Go | Prints the last lines of files and follows them as they grow. |
+| 142 | [142-software-kvm](142-software-kvm/) | Go | Shares one keyboard, mouse and clipboard across computers (Barrier-compatible). |
