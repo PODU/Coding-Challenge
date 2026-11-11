@@ -147,3 +147,4 @@ Each folder is a self-contained project with its own README.
 | 141 | [141-tail](141-tail/) | Go | Prints the last lines of files and follows them as they grow. |
 | 142 | [142-software-kvm](142-software-kvm/) | Go | Shares one keyboard, mouse and clipboard across computers (Barrier-compatible). |
 | 144 | [144-matrix-falling](144-matrix-falling/) | Go | Matrix-style falling characters in the terminal. |
+| 145 | [145-disk-analyser](145-disk-analyser/) | Go | Scans a directory tree and draws it as a treemap to find space hogs. |
